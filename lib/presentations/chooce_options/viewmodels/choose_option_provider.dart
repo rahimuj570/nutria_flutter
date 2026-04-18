@@ -3,12 +3,17 @@ import 'package:neutria/app/app.dart';
 import 'package:neutria/data/choioce_options/entity/choose_entity.dart';
 import 'package:neutria/data/choioce_options/enums/gender_enum.dart';
 import 'package:neutria/data/choioce_options/enums/workout_enum.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_country_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_gender.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
 
 class ChooseOptionProvider extends ChangeNotifier {
-  final List<Widget> options = [ChooseGender(), ChooseWorkoutScreen()];
+  final List<Widget> options = [
+    ChooseGender(),
+    ChooseWorkoutScreen(),
+    ChooseCountryScreen(),
+  ];
   final _totalScreen = 15;
 
   bool _isNextBtnDisabled = true;

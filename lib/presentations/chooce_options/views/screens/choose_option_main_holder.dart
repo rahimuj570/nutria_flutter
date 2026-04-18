@@ -78,7 +78,7 @@ class _ChooseOptionMainHolderState extends State<ChooseOptionMainHolder> {
                       );
                     },
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 48),
                   provider.getScreen,
                   SizedBox(height: 30),
                 ],

@@ -59,17 +59,19 @@ class WelcomeScreen extends StatelessWidget {
                     "Calorie tracking made easy",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
-                  const Text(
+                  Text(
                     "Just snap a quick photo of your meal and we’ll do the rest",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                   ),
                   SizedBox(height: 115),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, ChooseOptionMainHolder.name);
                     },
-                    child: Text("Get Started Now!!"),
+                    child: Text(
+                      "Get Started Now!!",
+                      style: TextStyle(fontSize: 16, fontWeight: .w700),
+                    ),
                   ),
                 ],
               ),

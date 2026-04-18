@@ -3,6 +3,7 @@ import 'package:neutria/app/const_colors.dart';
 
 class AppTheme {
   static ThemeData get lightTheme => ThemeData(
+    fontFamily: "Poppins",
     appBarTheme: AppBarTheme(backgroundColor: Colors.white),
     scaffoldBackgroundColor: ConstColors.lightScafoldColor,
     brightness: .light,
@@ -17,5 +18,5 @@ class AppTheme {
     ),
   );
 
-  static ThemeData get darkTheme => ThemeData();
+  static ThemeData get darkTheme => ThemeData(fontFamily: "Poppins");
 }
