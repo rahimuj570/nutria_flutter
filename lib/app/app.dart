@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neutria/app/app_routes.dart';
 import 'package:neutria/app/app_theme.dart';
 import 'package:neutria/app/state_management/theme_provider.dart';
-import 'package:neutria/presentations/viewes/screens/welcome_screen.dart';
+import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
 class Neutria extends StatelessWidget {

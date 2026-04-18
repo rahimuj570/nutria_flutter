@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app_assets_path.dart';
+import 'package:neutria/app/const_colors.dart';
+import 'package:neutria/presentations/chooce_options/views/choose_option_main_holder.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static String name = "welcome_screen";
@@ -8,7 +10,6 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double imageHeight = 500;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -43,26 +44,28 @@ class WelcomeScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(33),
               width: double.infinity,
-              color: Colors.white,
+              color: ConstColors.lightScafoldColor,
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     "Welcome!!",
                     style: TextStyle(fontSize: 36, fontWeight: FontWeight.w600),
                   ),
                   SizedBox(height: 31),
-                  Text(
+                  const Text(
                     "Calorie tracking made easy",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
-                  Text(
+                  const Text(
                     "Just snap a quick photo of your meal and we’ll do the rest",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                   ),
                   SizedBox(height: 115),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, ChooseOptionMainHolder.name);
+                    },
                     child: Text("Get Started Now!!"),
                   ),
                 ],

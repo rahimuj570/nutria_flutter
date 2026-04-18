@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:neutria/app/const_colors.dart';
 
 class AppTheme {
   static ThemeData get lightTheme => ThemeData(
-    scaffoldBackgroundColor: Colors.white,
+    appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+    scaffoldBackgroundColor: ConstColors.lightScafoldColor,
     brightness: .light,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
