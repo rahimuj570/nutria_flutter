@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neutria/presentations/chooce_options/views/choose_option_main_holder.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_option_main_holder.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
 
 class AppRoutes {

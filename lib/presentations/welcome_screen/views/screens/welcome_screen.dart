@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app_assets_path.dart';
 import 'package:neutria/app/const_colors.dart';
-import 'package:neutria/presentations/chooce_options/views/choose_option_main_holder.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_option_main_holder.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static String name = "welcome_screen";
@@ -33,7 +33,10 @@ class WelcomeScreen extends StatelessWidget {
                   right: 0,
                   child: ClipPath(
                     clipper: CustomCliperPath(),
-                    child: Container(height: 100, color: Colors.white),
+                    child: Container(
+                      height: 100,
+                      color: ConstColors.lightScafoldColor,
+                    ),
                   ),
                 ),
               ],
