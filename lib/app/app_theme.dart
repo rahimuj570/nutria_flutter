@@ -16,6 +16,11 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: .circular(8)),
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: Colors.white,
+      border: OutlineInputBorder(borderRadius: .circular(8)),
+    ),
   );
 
   static ThemeData get darkTheme => ThemeData(fontFamily: "Poppins");

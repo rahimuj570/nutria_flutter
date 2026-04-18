@@ -64,6 +64,8 @@ class ChooseOptionProvider extends ChangeNotifier {
       return _genderChoose == null;
     } else if (index == 1) {
       return _workoutChoose == null;
+    } else if (index == 2) {
+      return _country == null || _country!.isEmpty;
     } else {
       ///need to be chnage later
       return false;
@@ -84,5 +86,20 @@ class ChooseOptionProvider extends ChangeNotifier {
   void chooseWorkout(WorkoutEnum workout) {
     _workoutChoose = workout;
     _onValueChange();
+  }
+
+  ////COUNTRY SEARCH OPERATION
+  String? _country;
+  String? get getCountry => _country;
+  void chooseCountry(String country) {
+    if (country.isEmpty) {
+      _isNextBtnDisabled = true;
+      notifyListeners();
+    }
+    _country = country;
+
+    if (country.isNotEmpty) {
+      _onValueChange();
+    }
   }
 }
