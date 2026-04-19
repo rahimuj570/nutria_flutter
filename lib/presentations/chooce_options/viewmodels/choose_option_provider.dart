@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:neutria/app/app.dart';
 import 'package:neutria/data/choioce_options/entity/choose_entity.dart';
 import 'package:neutria/data/choioce_options/enums/gender_enum.dart';
+import 'package:neutria/data/choioce_options/enums/previous_exp_enum.dart';
 import 'package:neutria/data/choioce_options/enums/workout_enum.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_country_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_gender.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/previous_exp_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
 
 class ChooseOptionProvider extends ChangeNotifier {
@@ -13,6 +15,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     ChooseGender(),
     ChooseWorkoutScreen(),
     ChooseCountryScreen(),
+    PreviousExpScreen(),
   ];
   final _totalScreen = 15;
 
@@ -54,6 +57,8 @@ class ChooseOptionProvider extends ChangeNotifier {
   void _allValueReset() {
     _genderChoose = null;
     _workoutChoose = null;
+    _country = null;
+    _prevExp = null;
     _isNextBtnDisabled = true;
     notifyListeners();
   }
@@ -66,6 +71,8 @@ class ChooseOptionProvider extends ChangeNotifier {
       return _workoutChoose == null;
     } else if (index == 2) {
       return _country == null || _country!.isEmpty;
+    } else if (index == 3) {
+      return _prevExp == null;
     } else {
       ///need to be chnage later
       return false;
@@ -101,5 +108,13 @@ class ChooseOptionProvider extends ChangeNotifier {
     if (country.isNotEmpty) {
       _onValueChange();
     }
+  }
+
+  ////PREVIOUS EXPERIENCE OPERATION
+  PreviousExpEnum? _prevExp;
+  PreviousExpEnum? get getPrevExp => _prevExp;
+  void choosePrevoiusExp(PreviousExpEnum prevExp) {
+    _prevExp = prevExp;
+    _onValueChange();
   }
 }
