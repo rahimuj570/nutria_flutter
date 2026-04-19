@@ -11,7 +11,18 @@ class ChooseHeightScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController scrollController = ScrollController();
+    ScrollController scrollController = ScrollController(
+      initialScrollOffset:
+          ((context.read<ChooseOptionProvider>().getChooseHeight ?? 0) * 30 -
+                  (450 / 2) +
+                  (30 / 2))
+              .clamp(
+                0.0,
+                (context.read<ChooseOptionProvider>().heightRangeCm.length *
+                        30) -
+                    450,
+              ),
+    );
 
     scrollController.addListener(() {
       double itemHeight = 30; // must match itemExtent

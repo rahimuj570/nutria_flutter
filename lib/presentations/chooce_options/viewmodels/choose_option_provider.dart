@@ -6,6 +6,7 @@ import 'package:neutria/data/choioce_options/enums/previous_exp_enum.dart';
 import 'package:neutria/data/choioce_options/enums/weight_enum.dart';
 import 'package:neutria/data/choioce_options/enums/workout_enum.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_country_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_dob_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_gender.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_height_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_weight_screen.dart';
@@ -21,6 +22,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     PreviousExpScreen(),
     ChooseHeightScreen(),
     ChooseWeightScreen(),
+    ChooseDobScreen(),
   ];
   final _totalScreen = 15;
 
@@ -66,6 +68,9 @@ class ChooseOptionProvider extends ChangeNotifier {
     _prevExp = null;
     _chooseHeightIndex = null;
     _weight = null;
+    selectedDay = null;
+    selectedMonth = null;
+    selectedYear = null;
     _isNextBtnDisabled = true;
     notifyListeners();
   }
@@ -84,6 +89,10 @@ class ChooseOptionProvider extends ChangeNotifier {
       return _chooseHeightIndex == null;
     } else if (index == 5) {
       return _weight == null;
+    } else if (index == 6) {
+      return selectedDay == null ||
+          selectedYear == null ||
+          selectedMonth == null;
     } else {
       ///need to be chnage later
       return false;
@@ -177,5 +186,61 @@ class ChooseOptionProvider extends ChangeNotifier {
     if (weight != 0) {
       _onValueChange();
     }
+  }
+
+  ////CHOOSE DOB OPERATION
+  int? selectedMonth;
+  int? selectedDay;
+  int? selectedYear;
+
+  final List<String> months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  final List<int> years = List<int>.generate(80, (i) => 1972 + i);
+
+  int getDaysInMonth(int year, int month) {
+    if (month == 2) {
+      // Leap year check
+      if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        return 29;
+      } else {
+        return 28;
+      }
+    }
+    if ([4, 6, 9, 11].contains(month)) return 30;
+    return 31;
+  }
+
+  void changeMonth(int index) {
+    selectedMonth = index;
+    _isNextBtnDisabled =
+        selectedDay == null || selectedYear == null || selectedMonth == null;
+    notifyListeners();
+  }
+
+  void changeDate(int index) {
+    selectedDay = index;
+    _isNextBtnDisabled =
+        selectedDay == null || selectedYear == null || selectedMonth == null;
+    notifyListeners();
+  }
+
+  void changeYear(int year) {
+    selectedYear = year;
+    _isNextBtnDisabled =
+        selectedDay == null || selectedYear == null || selectedMonth == null;
+    notifyListeners();
   }
 }
