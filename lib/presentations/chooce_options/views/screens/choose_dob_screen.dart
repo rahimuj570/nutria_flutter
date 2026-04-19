@@ -35,7 +35,7 @@ class ChooseDobScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Container(
-                    height: 80,
+                    height: 60,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
@@ -51,7 +51,7 @@ class ChooseDobScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    height: 80,
+                    height: 60,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
