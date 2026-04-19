@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:neutria/data/choioce_options/enums/gender_enum.dart';
+import 'package:neutria/app/app_assets_path.dart';
+import 'package:neutria/data/choioce_options/enums/goal_enum.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
+import 'package:neutria/presentations/chooce_options/views/widgets/goal_option_card_widget.dart';
 import 'package:provider/provider.dart';
 
 class ChooseGoadScreen extends StatelessWidget {
@@ -19,40 +21,36 @@ class ChooseGoadScreen extends StatelessWidget {
           ),
 
           SizedBox(height: 160),
-          ElevatedButton(
-            onPressed: () {
-              provider.chooseGender(GenderEnum.male);
-            },
-            style:
-                provider.getGenderChoose == null ||
-                    provider.getGenderChoose == GenderEnum.female
-                ? Theme.of(context).elevatedButtonTheme.style!.copyWith(
-                    backgroundColor: WidgetStatePropertyAll(Colors.white),
-                    foregroundColor: WidgetStatePropertyAll(Colors.black),
-                  )
-                : null,
-            child: const Text(
-              'Male',
-              style: TextStyle(fontWeight: .w500, fontSize: 16),
-            ),
+          GoalOptionCardWidget(
+            assets: AppAssetsPath.goal1,
+            goalType: GoalEnum.gain,
+            title: 'Gain Weight',
+            isUnselected: provider.getGoal != GoalEnum.gain,
+            provider: provider,
           ),
           SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              provider.chooseGender(GenderEnum.female);
-            },
-            style:
-                provider.getGenderChoose == null ||
-                    provider.getGenderChoose == GenderEnum.male
-                ? Theme.of(context).elevatedButtonTheme.style!.copyWith(
-                    backgroundColor: WidgetStatePropertyAll(Colors.white),
-                    foregroundColor: WidgetStatePropertyAll(Colors.black),
-                  )
-                : null,
-            child: const Text(
-              'Female',
-              style: TextStyle(fontSize: 16, fontWeight: .w500),
-            ),
+          GoalOptionCardWidget(
+            assets: AppAssetsPath.goal2,
+            goalType: GoalEnum.loss,
+            title: 'Loss weight',
+            isUnselected: provider.getGoal != GoalEnum.loss,
+            provider: provider,
+          ),
+          SizedBox(height: 10),
+          GoalOptionCardWidget(
+            assets: AppAssetsPath.goal3,
+            goalType: GoalEnum.maintain,
+            title: 'Maintain weight',
+            isUnselected: provider.getGoal != GoalEnum.maintain,
+            provider: provider,
+          ),
+          SizedBox(height: 10),
+          GoalOptionCardWidget(
+            assets: AppAssetsPath.goal4,
+            goalType: GoalEnum.gain,
+            title: 'Just exploring',
+            isUnselected: provider.getGoal != GoalEnum.explore,
+            provider: provider,
           ),
         ],
       ),
