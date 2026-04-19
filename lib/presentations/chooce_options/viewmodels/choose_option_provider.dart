@@ -13,6 +13,7 @@ import 'package:neutria/presentations/chooce_options/views/screens/choose_goal_s
 import 'package:neutria/presentations/chooce_options/views/screens/choose_height_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_weight_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/line_chart_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/previous_exp_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
 
@@ -26,6 +27,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     ChooseWeightScreen(),
     ChooseDobScreen(),
     ChooseGoadScreen(),
+    LineChartScreen(),
   ];
   final _totalScreen = 15;
 
