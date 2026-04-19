@@ -1,0 +1,1 @@
+enum WeightEnum { kg, pound }

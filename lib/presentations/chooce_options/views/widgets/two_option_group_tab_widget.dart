@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neutria/data/choioce_options/enums/height_enums.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 
 class TwoOptionGroupTabWidget extends StatelessWidget {
@@ -8,6 +7,7 @@ class TwoOptionGroupTabWidget extends StatelessWidget {
   final VoidCallback fun2;
   final String title1;
   final String title2;
+  final bool fun1Selected;
   const TwoOptionGroupTabWidget({
     super.key,
     required this.provider,
@@ -15,6 +15,7 @@ class TwoOptionGroupTabWidget extends StatelessWidget {
     required this.fun2,
     required this.title1,
     required this.title2,
+    required this.fun1Selected,
   });
 
   @override
@@ -25,10 +26,10 @@ class TwoOptionGroupTabWidget extends StatelessWidget {
           child: FilledButton(
             style: FilledButton.styleFrom(
               padding: .symmetric(vertical: 4),
-              backgroundColor: provider.getHeightUnit != HeightEnums.cm
+              backgroundColor: fun1Selected == false
                   ? Colors.transparent
                   : null,
-              foregroundColor: provider.getHeightUnit != HeightEnums.cm
+              foregroundColor: fun1Selected == false
                   ? Colors.black
                   : Colors.white,
             ),
@@ -44,10 +45,8 @@ class TwoOptionGroupTabWidget extends StatelessWidget {
           child: FilledButton(
             style: FilledButton.styleFrom(
               padding: .symmetric(vertical: 4),
-              backgroundColor: provider.getHeightUnit != HeightEnums.feet
-                  ? Colors.transparent
-                  : null,
-              foregroundColor: provider.getHeightUnit != HeightEnums.feet
+              backgroundColor: fun1Selected == true ? Colors.transparent : null,
+              foregroundColor: fun1Selected == true
                   ? Colors.black
                   : Colors.white,
             ),

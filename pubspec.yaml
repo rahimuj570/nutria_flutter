@@ -33,6 +33,7 @@ dependencies:
   provider: ^6.1.5+1
   logger: ^2.7.0
   shared_preferences: ^2.5.5
+  syncfusion_flutter_gauges: ^33.1.49
   
 
   # The following adds the Cupertino Icons font to your application.

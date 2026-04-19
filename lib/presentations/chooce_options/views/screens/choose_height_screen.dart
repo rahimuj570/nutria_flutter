@@ -59,6 +59,7 @@ class ChooseHeightScreen extends StatelessWidget {
               fun2: () => provider.changeHeightUnit(HeightEnums.feet),
               title1: 'Centemeter',
               title2: 'Feet',
+              fun1Selected: provider.getHeightUnit == HeightEnums.cm,
             ),
           ),
 

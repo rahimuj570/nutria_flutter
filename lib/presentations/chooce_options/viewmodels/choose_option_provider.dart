@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app.dart';
-import 'package:neutria/data/choioce_options/entity/choose_entity.dart';
 import 'package:neutria/data/choioce_options/enums/gender_enum.dart';
 import 'package:neutria/data/choioce_options/enums/height_enums.dart';
 import 'package:neutria/data/choioce_options/enums/previous_exp_enum.dart';
+import 'package:neutria/data/choioce_options/enums/weight_enum.dart';
 import 'package:neutria/data/choioce_options/enums/workout_enum.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_country_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_gender.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_height_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_weight_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/previous_exp_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
@@ -19,6 +20,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     ChooseCountryScreen(),
     PreviousExpScreen(),
     ChooseHeightScreen(),
+    ChooseWeightScreen(),
   ];
   final _totalScreen = 15;
 
@@ -63,6 +65,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     _country = null;
     _prevExp = null;
     _chooseHeightIndex = null;
+    _weight = null;
     _isNextBtnDisabled = true;
     notifyListeners();
   }
@@ -79,6 +82,8 @@ class ChooseOptionProvider extends ChangeNotifier {
       return _prevExp == null;
     } else if (index == 4) {
       return _chooseHeightIndex == null;
+    } else if (index == 5) {
+      return _weight == null;
     } else {
       ///need to be chnage later
       return false;
@@ -149,5 +154,28 @@ class ChooseOptionProvider extends ChangeNotifier {
   void chooseChooseHeightIndex(int height) {
     _chooseHeightIndex = height;
     _onValueChange();
+  }
+
+  /////CHOOSE WIRGHT OPERATION
+  ///
+
+  WeightEnum _weightUnit = WeightEnum.kg;
+  WeightEnum get getWeightEnum => _weightUnit;
+  void chooseWeightUnit(WeightEnum unit) {
+    _weightUnit = unit;
+    notifyListeners();
+  }
+
+  double? _weight;
+  double? get getWeight => _weight;
+  void chooseWeight(double weight) {
+    if (weight == 0) {
+      _isNextBtnDisabled = true;
+      notifyListeners();
+    }
+    _weight = weight;
+    if (weight != 0) {
+      _onValueChange();
+    }
   }
 }
