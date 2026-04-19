@@ -3,6 +3,7 @@ import 'package:neutria/app/const_colors.dart';
 import 'package:neutria/data/choioce_options/enums/height_enums.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 import 'package:neutria/presentations/chooce_options/views/widgets/height_ruler_widget.dart';
+import 'package:neutria/presentations/chooce_options/views/widgets/two_option_group_tab_widget.dart';
 import 'package:provider/provider.dart';
 
 class ChooseHeightScreen extends StatelessWidget {
@@ -52,52 +53,12 @@ class ChooseHeightScreen extends StatelessWidget {
               border: Border.all(color: ConstColors.lightBoderColor),
               borderRadius: .circular(8),
             ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      padding: .symmetric(vertical: 4),
-                      backgroundColor: provider.getHeightUnit != HeightEnums.cm
-                          ? Colors.transparent
-                          : null,
-                      foregroundColor: provider.getHeightUnit != HeightEnums.cm
-                          ? Colors.black
-                          : Colors.white,
-                    ),
-                    onPressed: () {
-                      provider.changeHeightUnit(HeightEnums.cm);
-                    },
-                    child: Text(
-                      'Centimeter',
-                      style: TextStyle(fontWeight: .w600, fontSize: 14),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 8),
-                Expanded(
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      padding: .symmetric(vertical: 4),
-                      backgroundColor:
-                          provider.getHeightUnit != HeightEnums.feet
-                          ? Colors.transparent
-                          : null,
-                      foregroundColor:
-                          provider.getHeightUnit != HeightEnums.feet
-                          ? Colors.black
-                          : Colors.white,
-                    ),
-                    onPressed: () {
-                      provider.changeHeightUnit(HeightEnums.feet);
-                    },
-                    child: Text(
-                      'Feet',
-                      style: TextStyle(fontWeight: .w600, fontSize: 14),
-                    ),
-                  ),
-                ),
-              ],
+            child: TwoOptionGroupTabWidget(
+              provider: provider,
+              fun1: () => provider.changeHeightUnit(HeightEnums.cm),
+              fun2: () => provider.changeHeightUnit(HeightEnums.feet),
+              title1: 'Centemeter',
+              title2: 'Feet',
             ),
           ),
 
