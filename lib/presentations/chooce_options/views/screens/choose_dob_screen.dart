@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neutria/app/const_colors.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 import 'package:neutria/presentations/chooce_options/views/widgets/custom_datepicker_widget.dart';
 import 'package:provider/provider.dart';
@@ -26,8 +27,45 @@ class ChooseDobScreen extends StatelessWidget {
 
           SizedBox(height: 160),
           SizedBox(
-            height: 100,
-            child: CustomDatePickerWidget(provider: provider),
+            height: 200,
+            child: Stack(
+              children: [
+                CustomDatePickerWidget(provider: provider),
+
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: 80,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          ConstColors.lightScafoldColor,
+                          ConstColors.lightScafoldColor.withOpacity(.5),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: 80,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          ConstColors.lightScafoldColor.withOpacity(.5),
+                          ConstColors.lightScafoldColor,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
