@@ -10,16 +10,14 @@ class ChooseGoadScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ChooseOptionProvider>(
       builder: (context, provider, child) => Column(
+        crossAxisAlignment: .start,
         mainAxisAlignment: .center,
         children: [
           Text(
-            'Choose your Gender',
+            'Choose your Goal?',
             style: TextStyle(fontWeight: .w600, fontSize: 24),
           ),
-          Text(
-            'It will be used to calibrate your custom plan.',
-            style: TextStyle(fontWeight: .w400, fontSize: 12),
-          ),
+
           SizedBox(height: 160),
           ElevatedButton(
             onPressed: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app.dart';
 import 'package:neutria/data/choioce_options/enums/gender_enum.dart';
+import 'package:neutria/data/choioce_options/enums/goal_enum.dart';
 import 'package:neutria/data/choioce_options/enums/height_enums.dart';
 import 'package:neutria/data/choioce_options/enums/previous_exp_enum.dart';
 import 'package:neutria/data/choioce_options/enums/weight_enum.dart';
@@ -8,6 +9,7 @@ import 'package:neutria/data/choioce_options/enums/workout_enum.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_country_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_dob_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_gender.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_goal_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_height_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_weight_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
@@ -23,6 +25,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     ChooseHeightScreen(),
     ChooseWeightScreen(),
     ChooseDobScreen(),
+    ChooseGoadScreen(),
   ];
   final _totalScreen = 15;
 
@@ -71,6 +74,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     selectedDay = null;
     selectedMonth = null;
     selectedYear = null;
+    _goal = null;
     _isNextBtnDisabled = true;
     notifyListeners();
   }
@@ -93,6 +97,8 @@ class ChooseOptionProvider extends ChangeNotifier {
       return selectedDay == null ||
           selectedYear == null ||
           selectedMonth == null;
+    } else if (index == 7) {
+      return _goal == null;
     } else {
       ///need to be chnage later
       return false;
@@ -242,5 +248,14 @@ class ChooseOptionProvider extends ChangeNotifier {
     _isNextBtnDisabled =
         selectedDay == null || selectedYear == null || selectedMonth == null;
     notifyListeners();
+  }
+
+  ////CHOOSE GOAL OPERATION
+  GoalEnum? _goal;
+  GoalEnum? get getGoal => _goal;
+
+  void chooseGoal(GoalEnum goal) {
+    _goal = goal;
+    _onValueChange();
   }
 }
