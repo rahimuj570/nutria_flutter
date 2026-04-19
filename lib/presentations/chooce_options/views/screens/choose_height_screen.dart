@@ -76,9 +76,13 @@ class ChooseHeightScreen extends StatelessWidget {
 
           SizedBox(height: 10),
 
-          HeightRulerWidget(
-            scrollController: scrollController,
-            provider: provider,
+          Stack(
+            children: [
+              HeightRulerWidget(
+                scrollController: scrollController,
+                provider: provider,
+              ),
+            ],
           ),
         ],
       ),
