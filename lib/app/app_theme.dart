@@ -16,6 +16,15 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: .circular(8)),
       ),
     ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        fixedSize: .fromWidth(.maxFinite),
+        padding: .all(14),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: .circular(8)),
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.white,

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:neutria/app/app.dart';
 import 'package:neutria/data/choioce_options/entity/choose_entity.dart';
 import 'package:neutria/data/choioce_options/enums/gender_enum.dart';
+import 'package:neutria/data/choioce_options/enums/height_enums.dart';
 import 'package:neutria/data/choioce_options/enums/previous_exp_enum.dart';
 import 'package:neutria/data/choioce_options/enums/workout_enum.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_country_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_gender.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_height_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/previous_exp_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
@@ -16,6 +18,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     ChooseWorkoutScreen(),
     ChooseCountryScreen(),
     PreviousExpScreen(),
+    ChooseHeightScreen(),
   ];
   final _totalScreen = 15;
 
@@ -59,6 +62,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     _workoutChoose = null;
     _country = null;
     _prevExp = null;
+    _chooseHeightIndex = null;
     _isNextBtnDisabled = true;
     notifyListeners();
   }
@@ -73,6 +77,8 @@ class ChooseOptionProvider extends ChangeNotifier {
       return _country == null || _country!.isEmpty;
     } else if (index == 3) {
       return _prevExp == null;
+    } else if (index == 4) {
+      return _chooseHeightIndex == null;
     } else {
       ///need to be chnage later
       return false;
@@ -115,6 +121,33 @@ class ChooseOptionProvider extends ChangeNotifier {
   PreviousExpEnum? get getPrevExp => _prevExp;
   void choosePrevoiusExp(PreviousExpEnum prevExp) {
     _prevExp = prevExp;
+    _onValueChange();
+  }
+
+  ////CHOSE HEIGHT OPERATION
+  // Range in centimeters (140 cm to 220 cm)
+  final List<double> heightRangeCm = List<double>.generate(
+    (220 - 140) + 1, // count
+    (i) => 140.0 + i, // start at 140 cm
+  );
+
+  // Range in feet (approx 4.6 ft to 7.2 ft)
+  List<double> get heightRangeFeet => heightRangeCm
+      .map((cm) => cm / 30.48) // convert cm to feet
+      .toList();
+
+  ///
+  HeightEnums _unit = HeightEnums.cm;
+  HeightEnums get getHeightUnit => _unit;
+  void changeHeightUnit(HeightEnums unit) {
+    _unit = unit;
+    notifyListeners();
+  }
+
+  int? _chooseHeightIndex;
+  int? get getChooseHeight => _chooseHeightIndex;
+  void chooseChooseHeightIndex(int height) {
+    _chooseHeightIndex = height;
     _onValueChange();
   }
 }
