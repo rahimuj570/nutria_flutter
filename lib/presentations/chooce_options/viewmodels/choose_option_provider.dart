@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app.dart';
+import 'package:neutria/data/choioce_options/entity/meal_timing_entity.dart';
 import 'package:neutria/data/choioce_options/enums/gender_enum.dart';
 import 'package:neutria/data/choioce_options/enums/goal_enum.dart';
 import 'package:neutria/data/choioce_options/enums/height_enums.dart';
@@ -11,8 +12,10 @@ import 'package:neutria/presentations/chooce_options/views/screens/choose_dob_sc
 import 'package:neutria/presentations/chooce_options/views/screens/choose_gender.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_goal_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_height_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_meal_timing_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_weight_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/desired_weight_sceen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/line_chart_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/previous_exp_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
@@ -28,6 +31,8 @@ class ChooseOptionProvider extends ChangeNotifier {
     ChooseDobScreen(),
     ChooseGoadScreen(),
     LineChartScreen(),
+    DesiredWeightSceen(),
+    ChooseMealTimingScreen(),
   ];
   final _totalScreen = 15;
 
@@ -77,6 +82,8 @@ class ChooseOptionProvider extends ChangeNotifier {
     selectedMonth = null;
     selectedYear = null;
     _goal = null;
+    _desiredWeightIndex = null;
+    _mealTimings.clear();
     _isNextBtnDisabled = true;
     notifyListeners();
   }
@@ -101,6 +108,10 @@ class ChooseOptionProvider extends ChangeNotifier {
           selectedMonth == null;
     } else if (index == 7) {
       return _goal == null;
+    } else if (index == 9) {
+      return _desiredWeightIndex == null;
+    } else if (index == 10) {
+      return _mealTimings.isEmpty;
     } else {
       ///need to be chnage later
       return false;
@@ -148,14 +159,24 @@ class ChooseOptionProvider extends ChangeNotifier {
 
   ////CHOSE HEIGHT OPERATION
   // Range in centimeters (140 cm to 220 cm)
+  // final List<double> heightRangeCm = List<double>.generate(
+  //   (220 - 140) + 1, // count
+  //   (i) => 140.0 + i, // start at 140 cm
+  // );
+
+  // cm array stepping by 0.1 cm
   final List<double> heightRangeCm = List<double>.generate(
-    (220 - 140) + 1, // count
-    (i) => 140.0 + i, // start at 140 cm
+    (((220.0 - 140.0) / 0.1).round()) + 1, // number of steps
+    (i) => double.parse((140.0 + (i * 0.1)).toStringAsFixed(1)),
   );
 
   // Range in feet (approx 4.6 ft to 7.2 ft)
+  // List<double> get heightRangeFeet => heightRangeCm
+  //     .map((cm) => cm / 30.48) // convert cm to feet
+  //     .toList();
+
   List<double> get heightRangeFeet => heightRangeCm
-      .map((cm) => cm / 30.48) // convert cm to feet
+      .map((cm) => double.parse((cm / 30.48).toStringAsFixed(4)))
       .toList();
 
   ///
@@ -173,7 +194,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     _onValueChange();
   }
 
-  /////CHOOSE WIRGHT OPERATION
+  /////CHOOSE WEIGHT OPERATION
   ///
 
   WeightEnum _weightUnit = WeightEnum.kg;
@@ -258,6 +279,61 @@ class ChooseOptionProvider extends ChangeNotifier {
 
   void chooseGoal(GoalEnum goal) {
     _goal = goal;
+    _onValueChange();
+  }
+
+  ////DESIRED WEIGHT SCREEN
+  int? _desiredWeightIndex;
+  int? get getDesiredWeightIndex => _desiredWeightIndex;
+
+  WeightEnum _desiredWeightType = WeightEnum.kg;
+  WeightEnum get getDesiredWeightType => _desiredWeightType;
+  void chooseDesiredWeightEnum(WeightEnum weight) {
+    _desiredWeightType = weight;
+    notifyListeners();
+  }
+
+  void chooseDesiredWeightIndex(int index) {
+    _desiredWeightIndex = index;
+    _onValueChange();
+  }
+
+  void chooseDesiredWeightIndexByText(String w) {
+    if (w.isNotEmpty) {
+      int ind = _desiredWeightType == WeightEnum.kg
+          ? desiredWeightRangeKg.indexOf(int.parse(w.split('.')[0]))
+          : desiredWeightRangePound.indexOf(int.parse(w.split('.')[0]));
+      if (ind != -1) {
+        _desiredWeightIndex = ind;
+        _onValueChange();
+      } else {
+        _isNextBtnDisabled = true;
+        notifyListeners();
+      }
+    } else {
+      _isNextBtnDisabled = true;
+      notifyListeners();
+    }
+  }
+
+  final List<int> desiredWeightRangeKg = List<int>.generate(
+    (75 - 45) + 1, // count
+    (i) => 45 + i,
+  );
+
+  // Pounds range (converted from 45–75 kg)
+  final List<int> desiredWeightRangePound = List<int>.generate(
+    (165 - 99) + 1, // count
+    (i) => 99 + i,
+  );
+
+  ////// MEAL TIMING OPERATION
+  ///
+  final List<MealTimingEntity> _mealTimings = [];
+  List<MealTimingEntity> get getMealTiming => _mealTimings;
+
+  void addMealTiming(MealTimingEntity time) {
+    _mealTimings.add(time);
     _onValueChange();
   }
 }

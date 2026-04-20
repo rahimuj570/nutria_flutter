@@ -38,71 +38,78 @@ class HeightRulerWidget extends StatelessWidget {
                   controller: scrollController,
                   padding: .all(0),
                   scrollDirection: .vertical,
-                  itemCount: provider.heightRangeFeet.length,
+                  itemCount: provider.getHeightUnit == HeightEnums.feet
+                      ? provider.heightRangeFeet.length
+                      : provider.heightRangeCm.length,
                   itemBuilder: (context, index) {
-                    ////
-                    ///
-                    ///
-                    ///
-
-                    double height = provider.getHeightUnit == HeightEnums.cm
+                    // Base height in cm
+                    double heightCm = provider.getHeightUnit == HeightEnums.cm
                         ? provider.heightRangeCm[index]
-                        : double.parse(
-                            provider.heightRangeFeet[index].toStringAsFixed(2),
-                          );
+                        : provider.heightRangeCm[index]; // keep cm base
 
+                    // Convert to feet if needed
+                    double heightFeet = heightCm / 30.48;
+
+                    // Highlight rules
+                    bool isFullCm =
+                        provider.getHeightUnit == HeightEnums.cm &&
+                        index % 10 == 0;
+                    bool isFullFoot =
+                        provider.getHeightUnit == HeightEnums.feet &&
+                        ((heightFeet - heightFeet.round()).abs() < 0.001);
+
+                    // Selected item
                     if (provider.getChooseHeight == index) {
                       return Row(
                         children: [
                           Image.asset(AppAssetsPath.selctedRulerPonter),
                           Container(
-                            margin: .symmetric(vertical: 10),
-                            width: (index) % 10 == 0 ? 50 : 40,
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            width: (isFullCm || isFullFoot) ? 60 : 40,
                             height: 3,
                             color: Colors.black,
                           ),
                           Text(
-                            ' $height',
-                            style: TextStyle(fontWeight: .w600, fontSize: 20),
+                            provider.getHeightUnit == HeightEnums.cm
+                                ? ' ${heightCm.toStringAsFixed(1)}'
+                                : ' ${heightFeet.toStringAsFixed(2)}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                            ),
                           ),
                           Text(
                             ' ${provider.getHeightUnit.name}',
-                            style: TextStyle(fontWeight: .w500, fontSize: 12),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                            ),
                           ),
                         ],
                       );
                     }
 
-                    if (index % 10 == 0) {
-                      return GestureDetector(
-                        onTap: () => provider.chooseChooseHeightIndex(index),
-                        child: Row(
-                          children: [
-                            Align(
-                              alignment: .centerLeft,
-                              child: Container(
-                                margin: .symmetric(vertical: 10),
-                                width: (index) % 10 == 0 ? 50 : 25,
-                                height: 4,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(' $height'),
-                          ],
-                        ),
-                      );
-                    }
-
+                    // Normal ticks
                     return GestureDetector(
                       onTap: () => provider.chooseChooseHeightIndex(index),
-                      child: Align(
-                        alignment: .centerLeft,
-                        child: Container(
-                          margin: .symmetric(vertical: 10),
-                          width: (index) % 10 == 0 ? 50 : 25,
-                          height: 2,
-                          color: Colors.black,
-                        ),
+                      child: Row(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 10),
+                              width: (isFullCm || isFullFoot) ? 50 : 25,
+                              height: (isFullCm || isFullFoot) ? 4 : 2,
+                              color: Colors.black,
+                            ),
+                          ),
+                          if (isFullCm || isFullFoot)
+                            Text(
+                              provider.getHeightUnit == HeightEnums.cm
+                                  ? ' ${heightCm.toStringAsFixed(1)}'
+                                  : ' ${heightFeet.toStringAsFixed(2)}',
+                            ),
+                        ],
                       ),
                     );
                   },
@@ -116,7 +123,7 @@ class HeightRulerWidget extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          ConstColors.lightScafoldColor.withOpacity(.5),
+                          ConstColors.lightScafoldColor.withValues(alpha: .5),
                           ConstColors.lightScafoldColor,
                         ],
                       ),
@@ -133,7 +140,7 @@ class HeightRulerWidget extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           ConstColors.lightScafoldColor,
-                          ConstColors.lightScafoldColor.withOpacity(.5),
+                          ConstColors.lightScafoldColor.withValues(alpha: .5),
                         ],
                       ),
                     ),

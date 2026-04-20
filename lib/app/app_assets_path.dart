@@ -6,7 +6,9 @@ class AppAssetsPath {
   static final femaleHeightFigure = "assets/images/female_height_figure.png";
 
   static final selctedRulerPonter = "assets/icons/selcted_ruler_ponter.png";
+  static final topSelctedRulerPonter = "assets/icons/top_selected_pointer.png";
   static final verticleArrow = "assets/icons/verticle_arrow_height.png";
+  static final horizontalArrow = "assets/icons/horizontal_arrow_height.png";
   static final goal1 = "assets/icons/goal1.png";
   static final goal2 = "assets/icons/goal2.png";
   static final goal3 = "assets/icons/goal3.png";

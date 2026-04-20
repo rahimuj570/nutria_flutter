@@ -3,6 +3,7 @@ import 'package:neutria/app/const_colors.dart';
 import 'package:neutria/data/choioce_options/enums/weight_enum.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 import 'package:neutria/presentations/chooce_options/views/widgets/two_option_group_tab_widget.dart';
+import 'package:neutria/presentations/chooce_options/views/widgets/weight_text_input.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -18,7 +19,6 @@ class ChooseWeightScreen extends StatelessWidget {
     return Consumer<ChooseOptionProvider>(
       builder: (context, provider, child) => Column(
         crossAxisAlignment: .start,
-        mainAxisAlignment: .center,
         children: [
           Text(
             'Enter your weight',
@@ -52,7 +52,13 @@ class ChooseWeightScreen extends StatelessWidget {
           SfRadialGauge(
             axes: <RadialAxis>[
               RadialAxis(
+                axisLineStyle: AxisLineStyle(thickness: 0),
+                startAngle: 180,
+                endAngle: 0,
                 minimum: 0,
+                majorTickStyle: MajorTickStyle(thickness: 0),
+                minorTickStyle: MinorTickStyle(thickness: 0),
+                showLastLabel: true,
                 maximum: provider.getWeightEnum == WeightEnum.kg
                     ? 180
                     : (180 * 2.20462),
@@ -74,59 +80,16 @@ class ChooseWeightScreen extends StatelessWidget {
                       ),
                     ),
                     angle: 90,
-                    positionFactor: 0.9,
+                    positionFactor: 0.5,
                   ),
                 ],
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: .center,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: .only(
-                    topLeft: .circular(8),
-                    bottomLeft: .circular(8),
-                  ),
-                  boxShadow: [BoxShadow(color: Colors.black, blurRadius: 1)],
-                ),
-                padding: .all(10),
-                child: Text(
-                  'Weight:',
-                  style: TextStyle(fontSize: 16, fontWeight: .w500),
-                ),
-              ),
-              SizedBox(
-                width: 120,
-                height: 45,
-                child: TextField(
-                  keyboardType: .number,
-                  controller: weightTEC,
-                  decoration: InputDecoration(
-                    hintText: 'Enter here',
-                    hintStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: .w500,
-                      color: Colors.grey.shade400,
-                    ),
-                    fillColor: ConstColors.lightBoderColor,
-                    border: OutlineInputBorder(
-                      borderRadius: .only(
-                        topLeft: .circular(0),
-                        topRight: .circular(8),
-                        bottomLeft: .circular(0),
-                        bottomRight: .circular(8),
-                      ),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    provider.chooseWeight(double.parse(value));
-                  },
-                ),
-              ),
-            ],
+          WeightInputWedget(
+            weightTEC: weightTEC,
+            onInputChange: (a) =>
+                provider.chooseWeight(double.parse(weightTEC.text)),
           ),
         ],
       ),
