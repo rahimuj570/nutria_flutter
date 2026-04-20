@@ -159,25 +159,25 @@ class ChooseOptionProvider extends ChangeNotifier {
 
   ////CHOSE HEIGHT OPERATION
   // Range in centimeters (140 cm to 220 cm)
-  // final List<double> heightRangeCm = List<double>.generate(
-  //   (220 - 140) + 1, // count
-  //   (i) => 140.0 + i, // start at 140 cm
-  // );
-
-  // cm array stepping by 0.1 cm
   final List<double> heightRangeCm = List<double>.generate(
-    (((220.0 - 140.0) / 0.1).round()) + 1, // number of steps
-    (i) => double.parse((140.0 + (i * 0.1)).toStringAsFixed(1)),
+    (220 - 140) + 1, // count
+    (i) => 140.0 + i, // start at 140 cm
   );
 
-  // Range in feet (approx 4.6 ft to 7.2 ft)
-  // List<double> get heightRangeFeet => heightRangeCm
-  //     .map((cm) => cm / 30.48) // convert cm to feet
-  //     .toList();
+  // cm array stepping by 0.1 cm
+  // final List<double> heightRangeCm = List<double>.generate(
+  //   (((220.0 - 140.0) / 0.1).round()) + 1, // number of steps
+  //   (i) => double.parse((140.0 + (i * 0.1)).toStringAsFixed(1)),
+  // );
 
+  // Range in feet (approx 4.6 ft to 7.2 ft)
   List<double> get heightRangeFeet => heightRangeCm
-      .map((cm) => double.parse((cm / 30.48).toStringAsFixed(4)))
+      .map((cm) => cm / 30.48) // convert cm to feet
       .toList();
+
+  // List<double> get heightRangeFeet => heightRangeCm
+  //     .map((cm) => double.parse((cm / 30.48).toStringAsFixed(4)))
+  //     .toList();
 
   ///
   HeightEnums _unit = HeightEnums.cm;

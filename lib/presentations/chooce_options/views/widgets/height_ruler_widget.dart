@@ -17,6 +17,8 @@ class HeightRulerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int divisor = provider.getHeightUnit == HeightEnums.cm ? 5 : 12;
+    debugPrint(provider.heightRangeFeet.toString());
     return Row(
       children: [
         Image.asset(AppAssetsPath.verticleArrow),
@@ -38,78 +40,86 @@ class HeightRulerWidget extends StatelessWidget {
                   controller: scrollController,
                   padding: .all(0),
                   scrollDirection: .vertical,
-                  itemCount: provider.getHeightUnit == HeightEnums.feet
-                      ? provider.heightRangeFeet.length
-                      : provider.heightRangeCm.length,
+                  itemCount: provider.heightRangeFeet.length,
                   itemBuilder: (context, index) {
-                    // Base height in cm
-                    double heightCm = provider.getHeightUnit == HeightEnums.cm
+                    ////
+                    ///
+                    ///
+                    ///
+                    bool isMajorTick;
+                    if (provider.getHeightUnit == HeightEnums.cm) {
+                      isMajorTick = index % 5 == 0;
+                    } else {
+                      // Highlights every 0.5 feet (e.g., 4.5, 5.0, 5.5...)
+                      // We use a small epsilon (0.02) because of floating point precision
+                      double val = provider.heightRangeFeet[index];
+                      isMajorTick =
+                          (val * 2 % 1.0 < 0.03) || (val * 2 % 1.0 > 0.97);
+                    }
+
+                    ///
+                    ///
+                    ///
+                    ///
+
+                    double height = provider.getHeightUnit == HeightEnums.cm
                         ? provider.heightRangeCm[index]
-                        : provider.heightRangeCm[index]; // keep cm base
+                        : double.parse(
+                            provider.heightRangeFeet[index].toStringAsFixed(2),
+                          );
 
-                    // Convert to feet if needed
-                    double heightFeet = heightCm / 30.48;
-
-                    // Highlight rules
-                    bool isFullCm =
-                        provider.getHeightUnit == HeightEnums.cm &&
-                        index % 10 == 0;
-                    bool isFullFoot =
-                        provider.getHeightUnit == HeightEnums.feet &&
-                        ((heightFeet - heightFeet.round()).abs() < 0.001);
-
-                    // Selected item
                     if (provider.getChooseHeight == index) {
                       return Row(
                         children: [
                           Image.asset(AppAssetsPath.selctedRulerPonter),
                           Container(
-                            margin: const EdgeInsets.symmetric(vertical: 10),
-                            width: (isFullCm || isFullFoot) ? 60 : 40,
+                            margin: .symmetric(vertical: 10),
+                            width: isMajorTick ? 50 : 40,
                             height: 3,
                             color: Colors.black,
                           ),
                           Text(
-                            provider.getHeightUnit == HeightEnums.cm
-                                ? ' ${heightCm.toStringAsFixed(1)}'
-                                : ' ${heightFeet.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                            ),
+                            ' $height',
+                            style: TextStyle(fontWeight: .w600, fontSize: 20),
                           ),
                           Text(
                             ' ${provider.getHeightUnit.name}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                            ),
+                            style: TextStyle(fontWeight: .w500, fontSize: 12),
                           ),
                         ],
                       );
                     }
 
-                    // Normal ticks
+                    if (isMajorTick) {
+                      return GestureDetector(
+                        onTap: () => provider.chooseChooseHeightIndex(index),
+                        child: Row(
+                          children: [
+                            Align(
+                              alignment: .centerLeft,
+                              child: Container(
+                                margin: .symmetric(vertical: 10),
+                                width: isMajorTick ? 50 : 25,
+                                height: 4,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(' $height'),
+                          ],
+                        ),
+                      );
+                    }
+
                     return GestureDetector(
                       onTap: () => provider.chooseChooseHeightIndex(index),
-                      child: Row(
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(vertical: 10),
-                              width: (isFullCm || isFullFoot) ? 50 : 25,
-                              height: (isFullCm || isFullFoot) ? 4 : 2,
-                              color: Colors.black,
-                            ),
-                          ),
-                          if (isFullCm || isFullFoot)
-                            Text(
-                              provider.getHeightUnit == HeightEnums.cm
-                                  ? ' ${heightCm.toStringAsFixed(1)}'
-                                  : ' ${heightFeet.toStringAsFixed(2)}',
-                            ),
-                        ],
+                      child: Align(
+                        alignment: .centerLeft,
+                        child: Container(
+                          margin: .symmetric(vertical: 10),
+                          width: isMajorTick ? 50 : 25,
+                          height: 2,
+                          color: Colors.black,
+                        ),
                       ),
                     );
                   },
@@ -140,7 +150,7 @@ class HeightRulerWidget extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           ConstColors.lightScafoldColor,
-                          ConstColors.lightScafoldColor.withValues(alpha: .5),
+                          ConstColors.lightScafoldColor.withOpacity(.5),
                         ],
                       ),
                     ),
