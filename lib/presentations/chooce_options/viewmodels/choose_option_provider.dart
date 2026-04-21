@@ -7,6 +7,7 @@ import 'package:neutria/data/choioce_options/enums/goal_enum.dart';
 import 'package:neutria/data/choioce_options/enums/height_enums.dart';
 import 'package:neutria/data/choioce_options/enums/previous_exp_enum.dart';
 import 'package:neutria/data/choioce_options/enums/weight_enum.dart';
+import 'package:neutria/data/choioce_options/enums/what_holding_back_enum.dart';
 import 'package:neutria/data/choioce_options/enums/workout_enum.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_country_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_diet_screen.dart';
@@ -17,6 +18,7 @@ import 'package:neutria/presentations/chooce_options/views/screens/choose_height
 import 'package:neutria/presentations/chooce_options/views/screens/choose_how_fast_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_meal_timing_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_weight_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_what_holding_screen%20.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/desired_weight_sceen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/line_chart_screen.dart';
@@ -38,6 +40,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     ChooseMealTimingScreen(),
     ChooseHowFastScreen(),
     ChooseDietScreen(),
+    ChooseWhatHoldingScreen(),
   ];
   final _totalScreen = 15;
 
@@ -90,6 +93,8 @@ class ChooseOptionProvider extends ChangeNotifier {
     _desiredWeightIndex = null;
     _mealTimings.clear();
     _howFastWant = 0;
+    _diet = null;
+    _whatHoldingBack = null;
     _isNextBtnDisabled = true;
     notifyListeners();
   }
@@ -122,6 +127,8 @@ class ChooseOptionProvider extends ChangeNotifier {
       return _howFastWant == 0;
     } else if (index == 12) {
       return _diet == null;
+    } else if (index == 13) {
+      return _whatHoldingBack == null;
     } else {
       ///need to be chnage later
       return false;
@@ -382,6 +389,15 @@ class ChooseOptionProvider extends ChangeNotifier {
 
   void chooseDiet(DietEnum diet) {
     _diet = diet;
+    _onValueChange();
+  }
+
+  //// CHOOSE WHAT HOLDING BACK OPERATION
+  ///
+  WhatHoldingBackEnum? _whatHoldingBack;
+  WhatHoldingBackEnum? get getWhatHoldingBack => _whatHoldingBack;
+  void chooseWhatHoldingBack(WhatHoldingBackEnum whatHoldingBack) {
+    _whatHoldingBack = whatHoldingBack;
     _onValueChange();
   }
 }

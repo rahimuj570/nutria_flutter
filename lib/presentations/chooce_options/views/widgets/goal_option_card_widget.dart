@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 
@@ -33,7 +35,14 @@ class GoalOptionCardWidget extends StatelessWidget {
         child: Row(
           crossAxisAlignment: .center,
           children: [
-            Image.asset(assets, width: 32),
+            assets.isNotEmpty
+                ? Image.asset(assets, width: 32)
+                : Icon(
+                    isUnselected ? Icons.circle_outlined : Icons.circle_rounded,
+                    color: isUnselected ? Colors.black : Colors.white,
+                    size: 14,
+                    fontWeight: .bold,
+                  ),
             SizedBox(width: 16),
             Text(
               title,
