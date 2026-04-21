@@ -12,6 +12,7 @@ import 'package:neutria/presentations/chooce_options/views/screens/choose_dob_sc
 import 'package:neutria/presentations/chooce_options/views/screens/choose_gender.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_goal_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_height_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_how_fast_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_meal_timing_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_weight_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
@@ -33,6 +34,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     LineChartScreen(),
     DesiredWeightSceen(),
     ChooseMealTimingScreen(),
+    ChooseHowFastScreen(),
   ];
   final _totalScreen = 15;
 
@@ -84,6 +86,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     _goal = null;
     _desiredWeightIndex = null;
     _mealTimings.clear();
+    _howFastWant = 0;
     _isNextBtnDisabled = true;
     notifyListeners();
   }
@@ -112,6 +115,8 @@ class ChooseOptionProvider extends ChangeNotifier {
       return _desiredWeightIndex == null;
     } else if (index == 10) {
       return _mealTimings.isEmpty;
+    } else if (index == 11) {
+      return _howFastWant == 0;
     } else {
       ///need to be chnage later
       return false;
@@ -353,5 +358,15 @@ class ChooseOptionProvider extends ChangeNotifier {
   void updateMealTiming(MealTimingEntity newTime, int index) {
     _mealTimings[index] = newTime;
     notifyListeners();
+  }
+
+  //////CHOOSE HOW FAST WANT OPERATION
+  ///
+  double _howFastWant = 0;
+  double get getHowFastWant => _howFastWant;
+
+  void chooseHowFastWant(double howFastWant) {
+    _howFastWant = howFastWant;
+    _onValueChange();
   }
 }

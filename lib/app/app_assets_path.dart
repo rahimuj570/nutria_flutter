@@ -4,6 +4,8 @@ class AppAssetsPath {
   static final welcomeHeadHero = "assets/images/welcome_head.png";
   static final maleHeightFigure = "assets/images/male_height_figure.png";
   static final femaleHeightFigure = "assets/images/female_height_figure.png";
+  static final leftVerticleArrow = "assets/images/left_verticle_arrow.png";
+  static final rightVerticleArrow = "assets/images/right_verticle_arrow.png";
 
   static final selctedRulerPonter = "assets/icons/selcted_ruler_ponter.png";
   static final topSelctedRulerPonter = "assets/icons/top_selected_pointer.png";
@@ -13,4 +15,7 @@ class AppAssetsPath {
   static final goal2 = "assets/icons/goal2.png";
   static final goal3 = "assets/icons/goal3.png";
   static final goal4 = "assets/icons/goal4.png";
+  static final fast = "assets/icons/fast.png";
+  static final medium = "assets/icons/medium.png";
+  static final slow = "assets/icons/slow.png";
 }
