@@ -20,6 +20,7 @@ import 'package:neutria/presentations/chooce_options/views/screens/choose_meal_t
 import 'package:neutria/presentations/chooce_options/views/screens/choose_weight_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_what_holding_screen%20.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choosen_final_result_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/desired_weight_sceen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/final_confirmation_click_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/line_chart_screen.dart';
@@ -43,6 +44,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     ChooseDietScreen(),
     ChooseWhatHoldingScreen(),
     FinalConfirmationClickScreen(),
+    ChoosenFinalResultScreen(),
   ];
   final _totalScreen = 15;
 
@@ -56,7 +58,7 @@ class ChooseOptionProvider extends ChangeNotifier {
 
   void onClickNext() {
     _isNextBtnDisabled = _isEmptyValue(_index + 1);
-    if (_index != 14) {
+    if (_index != 15) {
       _index++;
       notifyListeners();
     }
@@ -177,16 +179,16 @@ class ChooseOptionProvider extends ChangeNotifier {
   }
 
   ////CHOSE HEIGHT OPERATION
-  // Range in centimeters (140 cm to 220 cm)
+  // Range in centimeters (50 cm to 220 cm)
   final List<double> heightRangeCm = List<double>.generate(
-    (220 - 140) + 1, // count
-    (i) => 140.0 + i, // start at 140 cm
+    (220 - 50) + 1, // count
+    (i) => 50.0 + i, // start at 50 cm
   );
 
   // cm array stepping by 0.1 cm
   // final List<double> heightRangeCm = List<double>.generate(
-  //   (((220.0 - 140.0) / 0.1).round()) + 1, // number of steps
-  //   (i) => double.parse((140.0 + (i * 0.1)).toStringAsFixed(1)),
+  //   (((220.0 - 50.0) / 0.1).round()) + 1, // number of steps
+  //   (i) => double.parse((50.0 + (i * 0.1)).toStringAsFixed(1)),
   // );
 
   // Range in feet (approx 4.6 ft to 7.2 ft)

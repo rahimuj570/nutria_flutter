@@ -6,6 +6,9 @@ class AppAssetsPath {
   static final femaleHeightFigure = "assets/images/female_height_figure.png";
   static final leftVerticleArrow = "assets/images/left_verticle_arrow.png";
   static final rightVerticleArrow = "assets/images/right_verticle_arrow.png";
+  static final netError = "assets/images/netError.png";
+
+  static final pieChartResult = "assets/images/pie_chart.png";
 
   static final selctedRulerPonter = "assets/icons/selcted_ruler_ponter.png";
   static final topSelctedRulerPonter = "assets/icons/top_selected_pointer.png";
@@ -23,4 +26,5 @@ class AppAssetsPath {
   static final pescatarian = "assets/icons/pescatarian.png";
   static final vegan = "assets/icons/vegan.png";
   static final vegetarian = "assets/icons/vegetarian.png";
+  static final healthScore = "assets/icons/health_score.png";
 }

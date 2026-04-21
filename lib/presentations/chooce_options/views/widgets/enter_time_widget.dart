@@ -23,9 +23,12 @@ class _EnterTimeWidgetState extends State<EnterTimeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    _hourTEC.text = widget.provider.getMealTiming[widget.timeIndex].hr
-        .toString()
-        .padLeft(2, '0');
+    _hourTEC.text = widget.provider.getMealTiming[widget.timeIndex].hr == 0
+        ? ''
+        : widget.provider.getMealTiming[widget.timeIndex].hr.toString().padLeft(
+            2,
+            '1',
+          );
     _minTEC.text = widget.provider.getMealTiming[widget.timeIndex].min
         .toString()
         .padLeft(2, '0');

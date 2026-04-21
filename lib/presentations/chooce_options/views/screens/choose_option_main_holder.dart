@@ -12,6 +12,8 @@ class ChooseOptionMainHolder extends StatefulWidget {
 }
 
 class _ChooseOptionMainHolderState extends State<ChooseOptionMainHolder> {
+  void _goNextPhase() {}
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ChooseOptionProvider>(
@@ -39,44 +41,48 @@ class _ChooseOptionMainHolderState extends State<ChooseOptionMainHolder> {
                     ],
                   ),
                   SizedBox(height: 10),
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      double barWidth = constraints.maxWidth;
-                      double dotX = barWidth * provider.getCurrentProgress;
+                  Visibility(
+                    visible: provider.getIndex != 15,
 
-                      return Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          SizedBox(
-                            height: 5,
-                            child: LinearProgressIndicator(
-                              value: provider.getCurrentProgress,
-                              backgroundColor: Colors.grey[300],
-                              color: Colors.black,
-                              borderRadius: .circular(5),
-                            ),
-                          ),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        double barWidth = constraints.maxWidth;
+                        double dotX = barWidth * provider.getCurrentProgress;
 
-                          // Dot marker floating above
-                          Positioned(
-                            left: dotX - 8,
-                            top: -6,
-                            child: Container(
-                              width: 16,
-                              height: 16,
-                              decoration: BoxDecoration(
+                        return Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            SizedBox(
+                              height: 5,
+                              child: LinearProgressIndicator(
+                                value: provider.getCurrentProgress,
+                                backgroundColor: Colors.grey[300],
                                 color: Colors.black,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.white,
-                                  width: 2,
+                                borderRadius: .circular(5),
+                              ),
+                            ),
+
+                            // Dot marker floating above
+                            Positioned(
+                              left: dotX - 8,
+                              top: -6,
+                              child: Container(
+                                width: 16,
+                                height: 16,
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      );
-                    },
+                          ],
+                        );
+                      },
+                    ),
                   ),
                   SizedBox(height: 48),
                   provider.getScreen,
@@ -89,10 +95,18 @@ class _ChooseOptionMainHolderState extends State<ChooseOptionMainHolder> {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 60),
           child: ElevatedButton(
-            onPressed: provider.getIsNextBtnDisabled
+            onPressed: provider.getIndex == 15
+                ? _goNextPhase
+                : provider.getIsNextBtnDisabled
                 ? null
                 : provider.onClickNext,
-            child: Text(provider.getIndex == 14 ? "Develop your plan" : "Next"),
+            child: Text(
+              provider.getIndex == 14
+                  ? "Develop your plan"
+                  : provider.getIndex == 15
+                  ? "Let's Begin!"
+                  : "Next",
+            ),
           ),
         ),
       ),

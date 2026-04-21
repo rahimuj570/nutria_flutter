@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 
