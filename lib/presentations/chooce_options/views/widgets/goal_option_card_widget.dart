@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:neutria/data/choioce_options/enums/goal_enum.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 
 class GoalOptionCardWidget extends StatelessWidget {
   final String title;
   final bool isUnselected;
   final String assets;
-  final GoalEnum goalType;
+  final dynamic goalType;
   final ChooseOptionProvider provider;
+  final Function onTapCard;
   const GoalOptionCardWidget({
     super.key,
     required this.title,
@@ -15,14 +15,13 @@ class GoalOptionCardWidget extends StatelessWidget {
     required this.assets,
     required this.goalType,
     required this.provider,
+    required this.onTapCard,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        provider.chooseGoal(goalType);
-      },
+      onTap: () => onTapCard(),
       child: Container(
         padding: .symmetric(horizontal: 18, vertical: 10),
         width: .infinity,

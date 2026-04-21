@@ -22,6 +22,7 @@ class ChooseGoadScreen extends StatelessWidget {
 
           SizedBox(height: 160),
           GoalOptionCardWidget(
+            onTapCard: () => provider.chooseGoal(GoalEnum.gain),
             assets: AppAssetsPath.goal1,
             goalType: GoalEnum.gain,
             title: 'Gain Weight',
@@ -30,6 +31,7 @@ class ChooseGoadScreen extends StatelessWidget {
           ),
           SizedBox(height: 10),
           GoalOptionCardWidget(
+            onTapCard: () => provider.chooseGoal(GoalEnum.loss),
             assets: AppAssetsPath.goal2,
             goalType: GoalEnum.loss,
             title: 'Loss weight',
@@ -38,6 +40,7 @@ class ChooseGoadScreen extends StatelessWidget {
           ),
           SizedBox(height: 10),
           GoalOptionCardWidget(
+            onTapCard: () => provider.chooseGoal(GoalEnum.maintain),
             assets: AppAssetsPath.goal3,
             goalType: GoalEnum.maintain,
             title: 'Maintain weight',
@@ -46,6 +49,7 @@ class ChooseGoadScreen extends StatelessWidget {
           ),
           SizedBox(height: 10),
           GoalOptionCardWidget(
+            onTapCard: () => provider.chooseGoal(GoalEnum.explore),
             assets: AppAssetsPath.goal4,
             goalType: GoalEnum.gain,
             title: 'Just exploring',

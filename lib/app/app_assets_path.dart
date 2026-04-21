@@ -18,4 +18,9 @@ class AppAssetsPath {
   static final fast = "assets/icons/fast.png";
   static final medium = "assets/icons/medium.png";
   static final slow = "assets/icons/slow.png";
+  static final balance = "assets/icons/balance.png";
+  static final flexible = "assets/icons/flexible.png";
+  static final pescatarian = "assets/icons/pescatarian.png";
+  static final vegan = "assets/icons/vegan.png";
+  static final vegetarian = "assets/icons/vegetarian.png";
 }

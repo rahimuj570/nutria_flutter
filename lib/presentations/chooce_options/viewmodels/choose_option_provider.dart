@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app.dart';
 import 'package:neutria/data/choioce_options/entity/meal_timing_entity.dart';
+import 'package:neutria/data/choioce_options/enums/diet_enum.dart';
 import 'package:neutria/data/choioce_options/enums/gender_enum.dart';
 import 'package:neutria/data/choioce_options/enums/goal_enum.dart';
 import 'package:neutria/data/choioce_options/enums/height_enums.dart';
@@ -8,6 +9,7 @@ import 'package:neutria/data/choioce_options/enums/previous_exp_enum.dart';
 import 'package:neutria/data/choioce_options/enums/weight_enum.dart';
 import 'package:neutria/data/choioce_options/enums/workout_enum.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_country_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_diet_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_dob_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_gender.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_goal_screen.dart';
@@ -35,6 +37,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     DesiredWeightSceen(),
     ChooseMealTimingScreen(),
     ChooseHowFastScreen(),
+    ChooseDietScreen(),
   ];
   final _totalScreen = 15;
 
@@ -117,6 +120,8 @@ class ChooseOptionProvider extends ChangeNotifier {
       return _mealTimings.isEmpty;
     } else if (index == 11) {
       return _howFastWant == 0;
+    } else if (index == 12) {
+      return _diet == null;
     } else {
       ///need to be chnage later
       return false;
@@ -367,6 +372,16 @@ class ChooseOptionProvider extends ChangeNotifier {
 
   void chooseHowFastWant(double howFastWant) {
     _howFastWant = howFastWant;
+    _onValueChange();
+  }
+
+  ////CHOOSE DIET OPERATION
+  ///
+  DietEnum? _diet;
+  DietEnum? get getDietType => _diet;
+
+  void chooseDiet(DietEnum diet) {
+    _diet = diet;
     _onValueChange();
   }
 }
