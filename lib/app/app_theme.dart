@@ -29,6 +29,8 @@ class AppTheme {
       filled: true,
       fillColor: Colors.white,
       border: OutlineInputBorder(borderRadius: .circular(8)),
+      prefixIconColor: ConstColors.lightGreyTextColor,
+      suffixIconColor: ConstColors.lightGreyTextColor,
     ),
   );
 

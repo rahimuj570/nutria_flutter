@@ -7,6 +7,7 @@ class AppAssetsPath {
   static final leftVerticleArrow = "assets/images/left_verticle_arrow.png";
   static final rightVerticleArrow = "assets/images/right_verticle_arrow.png";
   static final netError = "assets/images/net_error.png";
+  static final loginHero = "assets/images/login_hero.png";
 
   static final pieChartResult = "assets/images/pie_chart.png";
 
