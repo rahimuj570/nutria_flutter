@@ -237,9 +237,15 @@ class ChooseOptionProvider extends ChangeNotifier {
     "December",
   ];
 
-  final List<int> years = List<int>.generate(80, (i) => 1972 + i);
+  final List<int> years = List<int>.generate(
+    DateTime.now().year - 1971,
+    (i) => 1972 + i,
+  );
 
   int getDaysInMonth(int year, int month) {
+    if (month == DateTime.now().month) {
+      return DateTime.now().day - 1;
+    }
     if (month == 2) {
       // Leap year check
       if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {

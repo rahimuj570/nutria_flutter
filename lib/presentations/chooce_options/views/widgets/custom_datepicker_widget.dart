@@ -9,17 +9,19 @@ class CustomDatePickerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     FixedExtentScrollController monthController = FixedExtentScrollController(
       initialItem: provider.selectedMonth == null
-          ? 0
+          ? 30
           : provider.selectedMonth! - 1,
     );
 
     FixedExtentScrollController dayController = FixedExtentScrollController(
-      initialItem: provider.selectedDay == null ? 0 : provider.selectedDay! - 1,
+      initialItem: provider.selectedDay == null
+          ? 31
+          : provider.selectedDay! - 1,
     );
 
     FixedExtentScrollController yearController = FixedExtentScrollController(
       initialItem: provider.selectedYear == null
-          ? 0
+          ? DateTime.now().year - 1972
           : provider.years.indexOf(provider.selectedYear!),
     );
 
@@ -73,7 +75,9 @@ class CustomDatePickerWidget extends StatelessWidget {
                 }
                 return null;
               },
-              childCount: provider.months.length,
+              childCount: DateTime.now().year == provider.selectedYear
+                  ? DateTime.now().month
+                  : provider.months.length,
             ),
           ),
         ),
