@@ -17,7 +17,6 @@ class HeightRulerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int divisor = provider.getHeightUnit == HeightEnums.cm ? 5 : 12;
     debugPrint(provider.heightRangeFeet.toString());
     return Row(
       children: [
@@ -104,7 +103,7 @@ class HeightRulerWidget extends StatelessWidget {
                                 color: Colors.black,
                               ),
                             ),
-                            Text(' $height'),
+                            Text(' ${(height * 10).roundToDouble() / 10}'),
                           ],
                         ),
                       );
