@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:neutria/app/services/net_checker_service.dart';
+import 'package:neutria/presentations/auth/view/screens/login_screen.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
+import 'package:neutria/presentations/common/view/screens/net_error_screen.dart';
 import 'package:provider/provider.dart';
 
 class ChooseOptionMainHolder extends StatefulWidget {
@@ -12,7 +15,14 @@ class ChooseOptionMainHolder extends StatefulWidget {
 }
 
 class _ChooseOptionMainHolderState extends State<ChooseOptionMainHolder> {
-  void _goNextPhase() {}
+  void _goNextPhase() async {
+    bool isOnline = await NetCheckerService().isConnectedWithInternet();
+    if (isOnline) {
+      Navigator.pushNamed(context, LoginScreen.name);
+    } else {
+      Navigator.pushNamed(context, NetErrorScreen.name);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
