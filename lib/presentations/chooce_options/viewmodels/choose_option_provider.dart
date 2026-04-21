@@ -338,8 +338,20 @@ class ChooseOptionProvider extends ChangeNotifier {
   final List<MealTimingEntity> _mealTimings = [];
   List<MealTimingEntity> get getMealTiming => _mealTimings;
 
+  bool _isEnableAddMeal = false;
+  bool get getIsEnableAddMeal => _isEnableAddMeal;
+  set setIsEnableAddMeal(bool isEnable) {
+    _isEnableAddMeal = isEnable;
+    notifyListeners();
+  }
+
   void addMealTiming(MealTimingEntity time) {
     _mealTimings.add(time);
     _onValueChange();
+  }
+
+  void updateMealTiming(MealTimingEntity newTime, int index) {
+    _mealTimings[index] = newTime;
+    notifyListeners();
   }
 }

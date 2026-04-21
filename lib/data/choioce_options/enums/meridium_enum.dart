@@ -1,0 +1,1 @@
+enum MeridiumEnum { am, pm }
