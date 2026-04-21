@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:neutria/app/app_assets_path.dart';
 import 'package:neutria/app/const_colors.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static const String name = 'login_screen';
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool isCheck = false;
+  bool isPassHidden = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,9 +61,22 @@ class LoginScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 17),
                         TextFormField(
+                          obscureText: isPassHidden,
                           decoration: InputDecoration(
                             hintText: 'Password',
                             prefixIcon: Icon(Icons.lock),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isPassHidden = !isPassHidden;
+                                });
+                              },
+                              child: Icon(
+                                isPassHidden
+                                    ? Icons.remove_red_eye
+                                    : Icons.remove_red_eye_outlined,
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(height: 8),
@@ -65,9 +85,14 @@ class LoginScreen extends StatelessWidget {
                             Transform.scale(
                               scale: .8,
                               child: Checkbox(
-                                value: true,
+                                value: isCheck,
                                 fillColor: WidgetStatePropertyAll(Colors.black),
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  setState(() {
+                                    isCheck = value!;
+                                  });
+                                },
+                                materialTapTargetSize: .shrinkWrap,
                               ),
                             ),
                             Text(
@@ -89,6 +114,8 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                        SizedBox(height: 48),
+                        FilledButton(onPressed: () {}, child: Text('Login')),
                       ],
                     ),
                   ),
