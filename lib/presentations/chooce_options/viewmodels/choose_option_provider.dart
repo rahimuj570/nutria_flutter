@@ -21,6 +21,7 @@ import 'package:neutria/presentations/chooce_options/views/screens/choose_weight
 import 'package:neutria/presentations/chooce_options/views/screens/choose_what_holding_screen%20.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_workout_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/desired_weight_sceen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/final_confirmation_click_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/line_chart_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/previous_exp_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
@@ -41,6 +42,7 @@ class ChooseOptionProvider extends ChangeNotifier {
     ChooseHowFastScreen(),
     ChooseDietScreen(),
     ChooseWhatHoldingScreen(),
+    FinalConfirmationClickScreen(),
   ];
   final _totalScreen = 15;
 

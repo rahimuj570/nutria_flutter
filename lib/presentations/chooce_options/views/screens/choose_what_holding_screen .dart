@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neutria/app/app_assets_path.dart';
-import 'package:neutria/data/choioce_options/enums/diet_enum.dart';
 import 'package:neutria/data/choioce_options/enums/what_holding_back_enum.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 import 'package:neutria/presentations/chooce_options/views/widgets/goal_option_card_widget.dart';

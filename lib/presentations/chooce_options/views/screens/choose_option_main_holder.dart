@@ -92,7 +92,7 @@ class _ChooseOptionMainHolderState extends State<ChooseOptionMainHolder> {
             onPressed: provider.getIsNextBtnDisabled
                 ? null
                 : provider.onClickNext,
-            child: const Text("Next"),
+            child: Text(provider.getIndex == 14 ? "Develop your plan" : "Next"),
           ),
         ),
       ),
