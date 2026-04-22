@@ -30,4 +30,6 @@ class AppAssetsPath {
   static final vegetarian = "assets/icons/vegetarian.png";
   static final healthScore = "assets/icons/health_score.png";
   static final forgotPass = "assets/icons/forgot_pass.png";
+  static final logo = "assets/icons/logo.png";
+  static final scan = "assets/icons/scan.png";
 }

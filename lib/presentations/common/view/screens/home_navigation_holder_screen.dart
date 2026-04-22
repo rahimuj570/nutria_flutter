@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:neutria/presentations/common/data/entity/menu_item_entity.dart';
+import 'package:neutria/app/app_assets_path.dart';
+import 'package:neutria/data/common/data/entity/menu_item_entity.dart';
 import 'package:neutria/presentations/common/viewmodels/home_navigation_holder_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -22,10 +23,10 @@ class HomeNavigationHolderScreen extends StatelessWidget {
           children: [
             provider.getScreenList[provider.getScreenIndex],
 
-            // Floating nav bar
+            // Floating botom nav bar
             Positioned(
-              left: 14,
-              right: 14,
+              left: 12,
+              right: 12,
               bottom: 14,
               child: SafeArea(
                 child: Container(
@@ -85,8 +86,20 @@ class HomeNavigationHolderScreen extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+              right: 40,
+              bottom: 150,
+              child: FloatingActionButton(
+                backgroundColor: Colors.black,
+                shape: CircleBorder(),
+                onPressed: () {},
+                child: Image.asset(AppAssetsPath.scan),
+              ),
+            ),
           ],
         ),
+        // floatingActionButton:
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }
