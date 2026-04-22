@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:neutria/app/const_colors.dart';
 import 'package:neutria/presentations/auth/view/screens/forgot_password_verification_screen_1.dart';
+import 'package:neutria/presentations/auth/view/screens/forgot_password_verification_screen_3.dart';
 import 'package:neutria/presentations/auth/view/screens/login_screen.dart';
 import 'package:pinput/pinput.dart';
 
@@ -167,7 +168,14 @@ class _ForgotPasswordVerificationScreen2State
 
             SizedBox(height: 14),
             FilledButton(
-              onPressed: isComplete == false ? null : () {},
+              onPressed: isComplete == false
+                  ? null
+                  : () {
+                      Navigator.pushNamed(
+                        context,
+                        ForgotPasswordVerificationScreen3.name,
+                      );
+                    },
               child: Text('Continue'),
             ),
             SizedBox(height: 14),

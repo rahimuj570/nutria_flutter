@@ -17,121 +17,126 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool isPassHidden = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Column(
-                mainAxisAlignment: .center,
-                crossAxisAlignment: .center,
-                children: [
-                  Image.asset(AppAssetsPath.registerHero),
-                  SizedBox(height: 45),
-                  Text(
-                    'Sign up',
-                    style: TextStyle(fontSize: 30, fontWeight: .bold),
-                  ),
-                  Text(
-                    'Create your new account',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: .w600,
-                      color: ConstColors.lightGreyTextColor,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Column(
+                  mainAxisAlignment: .center,
+                  crossAxisAlignment: .center,
+                  children: [
+                    Image.asset(AppAssetsPath.registerHero),
+                    SizedBox(height: 45),
+                    Text(
+                      'Sign up',
+                      style: TextStyle(fontSize: 30, fontWeight: .bold),
                     ),
-                  ),
-                  SizedBox(height: 50),
-                  Form(
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(
-                            hintText: 'user@mail.com',
-                            prefixIcon: Icon(Icons.email),
-                          ),
-                        ),
-                        SizedBox(height: 17),
-                        TextFormField(
-                          obscureText: isPassHidden,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            prefixIcon: Icon(Icons.lock),
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isPassHidden = !isPassHidden;
-                                });
-                              },
-                              child: Icon(
-                                isPassHidden
-                                    ? Icons.remove_red_eye
-                                    : Icons.remove_red_eye_outlined,
-                              ),
+                    Text(
+                      'Create your new account',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: .w600,
+                        color: ConstColors.lightGreyTextColor,
+                      ),
+                    ),
+                    SizedBox(height: 50),
+                    Form(
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            decoration: InputDecoration(
+                              hintText: 'user@mail.com',
+                              prefixIcon: Icon(Icons.email),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Row(
-                          children: [
-                            Transform.scale(
-                              scale: .8,
-                              child: Checkbox(
-                                value: isCheck,
-                                fillColor: WidgetStatePropertyAll(Colors.black),
-                                onChanged: (value) {
+                          SizedBox(height: 17),
+                          TextFormField(
+                            obscureText: isPassHidden,
+                            decoration: InputDecoration(
+                              hintText: 'Password',
+                              prefixIcon: Icon(Icons.lock),
+                              suffixIcon: GestureDetector(
+                                onTap: () {
                                   setState(() {
-                                    isCheck = value!;
+                                    isPassHidden = !isPassHidden;
                                   });
                                 },
-                                materialTapTargetSize: .shrinkWrap,
+                                child: Icon(
+                                  isPassHidden
+                                      ? Icons.remove_red_eye
+                                      : Icons.remove_red_eye_outlined,
+                                ),
                               ),
                             ),
-                            Text(
-                              'Remember me',
-                              style: TextStyle(
-                                color: ConstColors.lightGreyTextColor,
-                                fontWeight: .w600,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 48),
-                        FilledButton(onPressed: () {}, child: Text('Create')),
-                        SizedBox(height: 8),
-                        RichText(
-                          text: TextSpan(
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: .w500,
-                              color: ConstColors.lightGreyTextColor,
-                            ),
-                            text: 'Already have an account?',
+                          ),
+                          SizedBox(height: 8),
+                          Row(
                             children: [
-                              TextSpan(
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      LoginScreen.name,
-                                    );
+                              Transform.scale(
+                                scale: .8,
+                                child: Checkbox(
+                                  value: isCheck,
+                                  fillColor: WidgetStatePropertyAll(
+                                    Colors.black,
+                                  ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isCheck = value!;
+                                    });
                                   },
-                                text: '  Login',
+                                  materialTapTargetSize: .shrinkWrap,
+                                ),
+                              ),
+                              Text(
+                                'Remember me',
                                 style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: .w500,
+                                  color: ConstColors.lightGreyTextColor,
+                                  fontWeight: .w600,
+                                  fontSize: 12,
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                          SizedBox(height: 48),
+                          FilledButton(onPressed: () {}, child: Text('Create')),
+                          SizedBox(height: 8),
+                          RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: .w500,
+                                color: ConstColors.lightGreyTextColor,
+                              ),
+                              text: 'Already have an account?',
+                              children: [
+                                TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        LoginScreen.name,
+                                      );
+                                    },
+                                  text: '  Login',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: .w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

@@ -4,6 +4,8 @@ import 'package:neutria/app/app_assets_path.dart';
 import 'package:neutria/app/const_colors.dart';
 import 'package:neutria/presentations/auth/view/screens/forgot_password_screen.dart';
 import 'package:neutria/presentations/auth/view/screens/register_screen.dart';
+import 'package:neutria/presentations/chooce_options/views/screens/choose_option_main_holder.dart';
+import 'package:neutria/presentations/common/view/screens/home_navigation_holder_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String name = 'login_screen';
@@ -18,145 +20,158 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isPassHidden = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Column(
-                mainAxisAlignment: .center,
-                crossAxisAlignment: .center,
-                children: [
-                  Text(
-                    'Let’s follow Cal Z',
-                    style: TextStyle(fontSize: 22, fontWeight: .w500),
-                  ),
-                  Text(
-                    'Eat healthy, Stay healthy',
-                    style: TextStyle(fontSize: 12, fontWeight: .w300),
-                  ),
-                  SizedBox(height: 44),
-                  Image.asset(AppAssetsPath.loginHero),
-                  SizedBox(height: 45),
-                  Text(
-                    'Login',
-                    style: TextStyle(fontSize: 30, fontWeight: .bold),
-                  ),
-                  Text(
-                    'Login to your account',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: .w600,
-                      color: ConstColors.lightGreyTextColor,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Column(
+                  mainAxisAlignment: .center,
+                  crossAxisAlignment: .center,
+                  children: [
+                    Text(
+                      'Let’s follow Cal Z',
+                      style: TextStyle(fontSize: 22, fontWeight: .w500),
                     ),
-                  ),
-                  SizedBox(height: 50),
-                  Form(
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(
-                            hintText: 'user@mail.com',
-                            prefixIcon: Icon(Icons.email),
-                          ),
-                        ),
-                        SizedBox(height: 17),
-                        TextFormField(
-                          obscureText: isPassHidden,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            prefixIcon: Icon(Icons.lock),
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isPassHidden = !isPassHidden;
-                                });
-                              },
-                              child: Icon(
-                                isPassHidden
-                                    ? Icons.remove_red_eye
-                                    : Icons.remove_red_eye_outlined,
-                              ),
+                    Text(
+                      'Eat healthy, Stay healthy',
+                      style: TextStyle(fontSize: 12, fontWeight: .w300),
+                    ),
+                    SizedBox(height: 44),
+                    Image.asset(AppAssetsPath.loginHero),
+                    SizedBox(height: 45),
+                    Text(
+                      'Login',
+                      style: TextStyle(fontSize: 30, fontWeight: .bold),
+                    ),
+                    Text(
+                      'Login to your account',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: .w600,
+                        color: ConstColors.lightGreyTextColor,
+                      ),
+                    ),
+                    SizedBox(height: 50),
+                    Form(
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            decoration: InputDecoration(
+                              hintText: 'user@mail.com',
+                              prefixIcon: Icon(Icons.email),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Row(
-                          children: [
-                            Transform.scale(
-                              scale: .8,
-                              child: Checkbox(
-                                value: isCheck,
-                                fillColor: WidgetStatePropertyAll(Colors.black),
-                                onChanged: (value) {
+                          SizedBox(height: 17),
+                          TextFormField(
+                            obscureText: isPassHidden,
+                            decoration: InputDecoration(
+                              hintText: 'Password',
+                              prefixIcon: Icon(Icons.lock),
+                              suffixIcon: GestureDetector(
+                                onTap: () {
                                   setState(() {
-                                    isCheck = value!;
+                                    isPassHidden = !isPassHidden;
                                   });
                                 },
-                                materialTapTargetSize: .shrinkWrap,
+                                child: Icon(
+                                  isPassHidden
+                                      ? Icons.remove_red_eye
+                                      : Icons.remove_red_eye_outlined,
+                                ),
                               ),
                             ),
-                            Text(
-                              'Remember me',
-                              style: TextStyle(
-                                color: ConstColors.lightGreyTextColor,
-                                fontWeight: .w600,
-                                fontSize: 12,
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Transform.scale(
+                                scale: .8,
+                                child: Checkbox(
+                                  value: isCheck,
+                                  fillColor: WidgetStatePropertyAll(
+                                    Colors.black,
+                                  ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isCheck = value!;
+                                    });
+                                  },
+                                  materialTapTargetSize: .shrinkWrap,
+                                ),
                               ),
-                            ),
-                            Spacer(),
-                            GestureDetector(
-                              onTap: () => Navigator.pushNamed(
-                                context,
-                                ForgotPasswordScreen.name,
-                              ),
-                              child: Text(
-                                'Forgot Password?',
+                              Text(
+                                'Remember me',
                                 style: TextStyle(
                                   color: ConstColors.lightGreyTextColor,
                                   fontWeight: .w600,
                                   fontSize: 12,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 48),
-                        FilledButton(onPressed: () {}, child: Text('Login')),
-                        SizedBox(height: 8),
-                        RichText(
-                          text: TextSpan(
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: .w500,
-                              color: ConstColors.lightGreyTextColor,
-                            ),
-                            text: 'Don’t have account?',
-                            children: [
-                              TextSpan(
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      RegisterScreen.name,
-                                    );
-                                  },
-                                text: '  Register',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: .w500,
+                              Spacer(),
+                              GestureDetector(
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  ForgotPasswordScreen.name,
+                                ),
+                                child: Text(
+                                  'Forgot Password?',
+                                  style: TextStyle(
+                                    color: ConstColors.lightGreyTextColor,
+                                    fontWeight: .w600,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                          SizedBox(height: 48),
+                          FilledButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                HomeNavigationHolderScreen.name,
+                              );
+                            },
+                            child: Text('Login'),
+                          ),
+                          SizedBox(height: 8),
+                          RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: .w500,
+                                color: ConstColors.lightGreyTextColor,
+                              ),
+                              text: 'Don’t have account?',
+                              children: [
+                                TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        RegisterScreen.name,
+                                      );
+                                    },
+                                  text: '  Register',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: .w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
