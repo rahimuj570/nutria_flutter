@@ -4,7 +4,6 @@ import 'package:neutria/app/app_assets_path.dart';
 import 'package:neutria/app/const_colors.dart';
 import 'package:neutria/presentations/auth/view/screens/forgot_password_screen.dart';
 import 'package:neutria/presentations/auth/view/screens/register_screen.dart';
-import 'package:neutria/presentations/chooce_options/views/screens/choose_option_main_holder.dart';
 import 'package:neutria/presentations/common/view/screens/home_navigation_holder_screen.dart';
 
 class LoginScreen extends StatefulWidget {
