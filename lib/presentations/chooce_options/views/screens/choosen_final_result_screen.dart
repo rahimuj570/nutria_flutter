@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app_assets_path.dart';
-import 'package:neutria/app/const_colors.dart';
 import 'package:neutria/data/choioce_options/entity/pie_chart_entiry.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 import 'package:provider/provider.dart';

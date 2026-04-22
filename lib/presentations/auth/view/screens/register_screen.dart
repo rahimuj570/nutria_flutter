@@ -2,17 +2,17 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app_assets_path.dart';
 import 'package:neutria/app/const_colors.dart';
-import 'package:neutria/presentations/auth/view/screens/register_screen.dart';
+import 'package:neutria/presentations/auth/view/screens/login_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   static const String name = 'login_screen';
-  const LoginScreen({super.key});
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   bool isCheck = false;
   bool isPassHidden = true;
   @override
@@ -28,23 +28,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: .center,
                 crossAxisAlignment: .center,
                 children: [
-                  Text(
-                    'Let’s follow Cal Z',
-                    style: TextStyle(fontSize: 22, fontWeight: .w500),
-                  ),
-                  Text(
-                    'Eat healthy, Stay healthy',
-                    style: TextStyle(fontSize: 12, fontWeight: .w300),
-                  ),
-                  SizedBox(height: 44),
-                  Image.asset(AppAssetsPath.loginHero),
+                  Image.asset(AppAssetsPath.registerHero),
                   SizedBox(height: 45),
                   Text(
-                    'Login',
+                    'Sign up',
                     style: TextStyle(fontSize: 30, fontWeight: .bold),
                   ),
                   Text(
-                    'Login to your account',
+                    'Create your new account',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: .w600,
@@ -117,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         SizedBox(height: 48),
-                        FilledButton(onPressed: () {}, child: Text('Login')),
+                        FilledButton(onPressed: () {}, child: Text('Create')),
                         SizedBox(height: 8),
                         RichText(
                           text: TextSpan(
@@ -126,17 +117,17 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: .w500,
                               color: ConstColors.lightGreyTextColor,
                             ),
-                            text: 'Don’t have account?',
+                            text: 'Already have an account?',
                             children: [
                               TextSpan(
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     Navigator.pushNamed(
                                       context,
-                                      RegisterScreen.name,
+                                      LoginScreen.name,
                                     );
                                   },
-                                text: '  Register',
+                                text: '  Login',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neutria/presentations/auth/view/screens/login_screen.dart';
+import 'package:neutria/presentations/auth/view/screens/register_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_option_main_holder.dart';
 import 'package:neutria/presentations/common/view/screens/net_error_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
@@ -16,6 +17,8 @@ class AppRoutes {
       widget = NetErrorScreen();
     } else if (settings.name == LoginScreen.name) {
       widget = LoginScreen();
+    } else if (settings.name == RegisterScreen.name) {
+      widget = RegisterScreen();
     }
     return MaterialPageRoute(builder: (context) => widget);
   }
