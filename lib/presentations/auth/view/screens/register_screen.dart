@@ -96,15 +96,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 fontSize: 12,
                               ),
                             ),
-                            Spacer(),
-                            Text(
-                              'Forgot Password?',
-                              style: TextStyle(
-                                color: ConstColors.lightGreyTextColor,
-                                fontWeight: .w600,
-                                fontSize: 12,
-                              ),
-                            ),
                           ],
                         ),
                         SizedBox(height: 48),

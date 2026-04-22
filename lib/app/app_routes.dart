@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neutria/presentations/auth/view/screens/forgot_password_screen.dart';
 import 'package:neutria/presentations/auth/view/screens/login_screen.dart';
 import 'package:neutria/presentations/auth/view/screens/register_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_option_main_holder.dart';
@@ -19,6 +20,8 @@ class AppRoutes {
       widget = LoginScreen();
     } else if (settings.name == RegisterScreen.name) {
       widget = RegisterScreen();
+    } else if (settings.name == ForgotPasswordScreen.name) {
+      widget = ForgotPasswordScreen();
     }
     return MaterialPageRoute(builder: (context) => widget);
   }

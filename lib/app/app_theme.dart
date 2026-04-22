@@ -4,7 +4,14 @@ import 'package:neutria/app/const_colors.dart';
 class AppTheme {
   static ThemeData get lightTheme => ThemeData(
     fontFamily: "Poppins",
-    appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+    appBarTheme: AppBarTheme(
+      backgroundColor: ConstColors.lightScafoldColor,
+      titleTextStyle: TextStyle(
+        fontSize: 18,
+        fontWeight: .w500,
+        color: Colors.black,
+      ),
+    ),
     scaffoldBackgroundColor: ConstColors.lightScafoldColor,
     brightness: .light,
     elevatedButtonTheme: ElevatedButtonThemeData(
