@@ -5,7 +5,7 @@ import 'package:neutria/app/const_colors.dart';
 import 'package:neutria/presentations/auth/view/screens/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
-  static const String name = 'login_screen';
+  static const String name = 'register_screen';
   const RegisterScreen({super.key});
 
   @override
