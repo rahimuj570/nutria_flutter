@@ -39,6 +39,10 @@ class AppTheme {
       prefixIconColor: ConstColors.lightGreyTextColor,
       suffixIconColor: ConstColors.lightGreyTextColor,
     ),
+
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(foregroundColor: Colors.black),
+    ),
   );
 
   static ThemeData get darkTheme => ThemeData(fontFamily: "Poppins");

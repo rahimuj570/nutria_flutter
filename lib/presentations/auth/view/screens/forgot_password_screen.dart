@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app_assets_path.dart';
+import 'package:neutria/presentations/auth/view/screens/forgot_password_verification_screen_1.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   static const String name = 'forgot_pass';
@@ -48,7 +49,15 @@ class ForgotPasswordScreen extends StatelessWidget {
               style: TextStyle(fontSize: 12, fontWeight: .w500),
             ),
             SizedBox(height: 10),
-            FilledButton(onPressed: () {}, child: Text('Continue')),
+            FilledButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  ForgotPasswordVerificationScreen1.name,
+                );
+              },
+              child: Text('Continue'),
+            ),
           ],
         ),
       ),
