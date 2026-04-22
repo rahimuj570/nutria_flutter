@@ -103,7 +103,12 @@ class _ChooseOptionMainHolderState extends State<ChooseOptionMainHolder> {
           ),
         ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 60),
+          padding: const EdgeInsets.only(
+            right: 32,
+            left: 32,
+            bottom: 60,
+            top: 20,
+          ),
           child: ElevatedButton(
             onPressed: provider.getIndex == 15
                 ? _goNextPhase

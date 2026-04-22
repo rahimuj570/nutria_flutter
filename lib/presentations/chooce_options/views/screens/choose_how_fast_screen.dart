@@ -45,16 +45,19 @@ class ChooseHowFastScreen extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8),
-          Slider(
-            divisions: 2,
-            padding: .symmetric(vertical: 0, horizontal: 5),
-            max: 100,
-            min: 0,
-            value: provider.getHowFastWant,
-            onChanged: (value) {
-              provider.chooseHowFastWant(value);
-            },
-            activeColor: Colors.black,
+          GestureDetector(
+            onTap: () => provider.chooseHowFastWant(provider.getHowFastWant),
+            child: Slider(
+              divisions: 2,
+              padding: .symmetric(vertical: 0, horizontal: 5),
+              max: 100,
+              min: 0,
+              value: provider.getHowFastWant,
+              onChanged: (value) {
+                provider.chooseHowFastWant(value);
+              },
+              activeColor: Colors.black,
+            ),
           ),
           Align(
             alignment: AlignmentGeometry.directional(
