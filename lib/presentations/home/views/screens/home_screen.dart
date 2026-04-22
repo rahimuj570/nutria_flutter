@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neutria/presentations/common/view/screens/custom_app_bar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,6 +7,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBarWidget(title: 'Cal Z'),
       body: Container(color: Colors.red, height: .maxFinite),
     );
   }

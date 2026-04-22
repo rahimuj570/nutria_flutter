@@ -9,6 +9,7 @@ class AppAssetsPath {
   static final netError = "assets/images/net_error.png";
   static final loginHero = "assets/images/login_hero.png";
   static final registerHero = "assets/images/register_hero.png";
+  static final logo = "assets/images/logo.png";
 
   static final pieChartResult = "assets/images/pie_chart.png";
 
@@ -30,6 +31,5 @@ class AppAssetsPath {
   static final vegetarian = "assets/icons/vegetarian.png";
   static final healthScore = "assets/icons/health_score.png";
   static final forgotPass = "assets/icons/forgot_pass.png";
-  static final logo = "assets/icons/logo.png";
   static final scan = "assets/icons/scan.png";
 }
