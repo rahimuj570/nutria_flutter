@@ -46,6 +46,7 @@ class ChooseHowFastScreen extends StatelessWidget {
           ),
           SizedBox(height: 8),
           Slider(
+            divisions: 2,
             padding: .symmetric(vertical: 0, horizontal: 5),
             max: 100,
             min: 0,
