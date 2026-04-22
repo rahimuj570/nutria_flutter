@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:neutria/app/const_colors.dart';
+import 'package:neutria/presentations/auth/view/screens/forgot_password_verification_screen_2.dart';
 
 class ForgotPasswordVerificationScreen1 extends StatefulWidget {
   static const String name = 'forgot_pass_verification1';
@@ -34,6 +35,15 @@ class _ForgotPasswordVerificationScreen1State
     });
     // TODO: implement initState
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    if (_timer != null && _timer!.isActive) {
+      _timer!.cancel();
+    }
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -94,7 +104,15 @@ class _ForgotPasswordVerificationScreen1State
               ),
             ),
             SizedBox(height: 20),
-            FilledButton(onPressed: () {}, child: Text('Continue')),
+            FilledButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  ForgotPasswordVerificationScreen2.name,
+                );
+              },
+              child: Text('Continue'),
+            ),
           ],
         ),
       ),
