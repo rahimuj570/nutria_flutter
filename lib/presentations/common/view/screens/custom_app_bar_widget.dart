@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neutria/app/app_assets_path.dart';
+import 'package:neutria/presentations/home/views/screens/notification_screen.dart';
 
 class CustomAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
@@ -7,12 +8,14 @@ class CustomAppBarWidget extends StatelessWidget
   final String title;
   final bool showTitle;
   final LeadingTypeEnum leadingType;
+  final VoidCallback? customLeadingAction;
   const CustomAppBarWidget({
     super.key,
     this.actionType = ShowActionEnum.notification,
     required this.title,
     this.showTitle = true,
     this.leadingType = LeadingTypeEnum.logo,
+    this.customLeadingAction,
   });
 
   @override
@@ -23,13 +26,23 @@ class CustomAppBarWidget extends StatelessWidget
           ? Image.asset(AppAssetsPath.logo)
           : GestureDetector(
               onTap: () {},
-              child: Row(
-                children: [
-                  SizedBox(width: 12),
-                  Icon(Icons.arrow_back_rounded),
-                  SizedBox(width: 8),
-                  Text('Back', style: TextStyle(fontSize: 14)),
-                ],
+              child: GestureDetector(
+                onTap: customLeadingAction ?? () => Navigator.pop(context),
+                child: Row(
+                  children: [
+                    SizedBox(width: 12),
+                    Icon(Icons.arrow_back_rounded, weight: 500),
+                    SizedBox(width: 8),
+                    Text(
+                      'Back',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: .w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
       title: showTitle
@@ -40,9 +53,15 @@ class CustomAppBarWidget extends StatelessWidget
       actions: actionType != ShowActionEnum.hidden
           ? [
               actionType == ShowActionEnum.notification
-                  ? Badge(
-                      label: Text('5'),
-                      child: Icon(Icons.notifications_outlined, size: 30),
+                  ? InkWell(
+                      customBorder: CircleBorder(),
+                      onTap: () {
+                        Navigator.pushNamed(context, NotificationScreen.name);
+                      },
+                      child: Badge(
+                        label: Text('5'),
+                        child: Icon(Icons.notifications_outlined, size: 30),
+                      ),
                     )
                   : Container(
                       padding: .all(2),

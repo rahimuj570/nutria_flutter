@@ -8,6 +8,7 @@ import 'package:neutria/presentations/auth/view/screens/register_screen.dart';
 import 'package:neutria/presentations/chooce_options/views/screens/choose_option_main_holder.dart';
 import 'package:neutria/presentations/common/view/screens/home_navigation_holder_screen.dart';
 import 'package:neutria/presentations/common/view/screens/net_error_screen.dart';
+import 'package:neutria/presentations/home/views/screens/notification_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
 
 class AppRoutes {
@@ -34,6 +35,8 @@ class AppRoutes {
       widget = ForgotPasswordVerificationScreen3();
     } else if (settings.name == HomeNavigationHolderScreen.name) {
       widget = HomeNavigationHolderScreen();
+    } else if (settings.name == NotificationScreen.name) {
+      widget = NotificationScreen();
     }
     return MaterialPageRoute(builder: (context) => widget);
   }
