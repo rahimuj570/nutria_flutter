@@ -43,6 +43,7 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(foregroundColor: Colors.black),
     ),
+    cardTheme: CardThemeData(color: Colors.white),
   );
 
   static ThemeData get darkTheme => ThemeData(fontFamily: "Poppins");

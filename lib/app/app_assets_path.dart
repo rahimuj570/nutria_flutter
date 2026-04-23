@@ -10,6 +10,7 @@ class AppAssetsPath {
   static final loginHero = "assets/images/login_hero.png";
   static final registerHero = "assets/images/register_hero.png";
   static final logo = "assets/images/logo.png";
+  static final calUp = "assets/images/cal_up.png";
 
   static final pieChartResult = "assets/images/pie_chart.png";
 
