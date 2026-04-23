@@ -11,6 +11,9 @@ class AppAssetsPath {
   static final registerHero = "assets/images/register_hero.png";
   static final logo = "assets/images/logo.png";
   static final calUp = "assets/images/cal_up.png";
+  static final homeCard1 = "assets/images/home_card_1.png";
+  static final homeCard2 = "assets/images/home_card_2.png";
+  static final homeCard3 = "assets/images/home_card_3.png";
 
   static final pieChartResult = "assets/images/pie_chart.png";
 

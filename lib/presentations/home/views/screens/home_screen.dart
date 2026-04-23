@@ -4,6 +4,7 @@ import 'package:neutria/app/const_colors.dart';
 import 'package:neutria/data/home/entity/weekly_day_entity.dart';
 import 'package:neutria/data/home/services/weekly_data_view_service.dart';
 import 'package:neutria/presentations/common/view/screens/custom_app_bar_widget.dart';
+import 'package:neutria/presentations/home/views/widgets/home_card_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -119,6 +120,119 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: .spaceBetween,
+                children: [
+                  HomeCardWidget(
+                    title: '75g',
+                    subTitle: 'Carbs left',
+                    imgPath: AppAssetsPath.homeCard1,
+                  ),
+                  HomeCardWidget(
+                    title: '50g',
+                    subTitle: 'Carbs left',
+                    imgPath: AppAssetsPath.homeCard2,
+                  ),
+                  HomeCardWidget(
+                    title: '25g',
+                    subTitle: 'Carbs left',
+                    imgPath: AppAssetsPath.homeCard3,
+                  ),
+                ],
+              ),
+              SizedBox(height: 18),
+              Row(
+                crossAxisAlignment: .center,
+                children: [
+                  Text(
+                    'Minerals status',
+                    style: TextStyle(fontSize: 16, fontWeight: .w500),
+                  ),
+                  Spacer(),
+                  Text(
+                    'Activities',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: .w400,
+                      color: ConstColors.lightGreyTextColor,
+                    ),
+                  ),
+                  SizedBox(width: 7),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: ConstColors.lightBoderColor,
+                        shape: .circle,
+                      ),
+                      child: Icon(
+                        Icons.add,
+                        color: ConstColors.lightGreyTextColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Container(
+                width: .maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: .circular(8),
+                ),
+                child: Column(
+                  crossAxisAlignment: .start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Major minerals',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: .w500,
+                          color: Color(0xff3285A1),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: ListView.separated(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => Row(
+                          mainAxisAlignment: .spaceBetween,
+                          children: [
+                            Text(
+                              'Potassium (K)',
+                              style: TextStyle(fontSize: 12, fontWeight: .w400),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 38.0,
+                                  right: 12,
+                                ),
+                                child: Divider(
+                                  color: ConstColors.lightBoderColor,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              '(12mg)',
+                              style: TextStyle(fontSize: 10, fontWeight: .w500),
+                            ),
+                          ],
+                        ),
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 10),
+                        itemCount: 10,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
