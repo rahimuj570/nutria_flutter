@@ -4,6 +4,7 @@ import 'package:neutria/app/app_theme.dart';
 import 'package:neutria/app/state_management/theme_provider.dart';
 import 'package:neutria/presentations/chooce_options/viewmodels/choose_option_provider.dart';
 import 'package:neutria/presentations/common/viewmodels/home_navigation_holder_provider.dart';
+import 'package:neutria/presentations/meal/viewmodels/view_all_meal_provider.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ class Neutria extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
         ChangeNotifierProvider(create: (context) => ChooseOptionProvider()),
+        ChangeNotifierProvider(create: (context) => ViewAllMealProvider()),
         ChangeNotifierProvider(
           create: (context) => HomeNavigationHolderProvider(),
         ),

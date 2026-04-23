@@ -9,6 +9,7 @@ import 'package:neutria/presentations/chooce_options/views/screens/choose_option
 import 'package:neutria/presentations/common/view/screens/home_navigation_holder_screen.dart';
 import 'package:neutria/presentations/common/view/screens/net_error_screen.dart';
 import 'package:neutria/presentations/home/views/screens/notification_screen.dart';
+import 'package:neutria/presentations/meal/views/screens/view_all_meal_screen.dart';
 import 'package:neutria/presentations/welcome_screen/views/screens/welcome_screen.dart';
 
 class AppRoutes {
@@ -37,6 +38,13 @@ class AppRoutes {
       widget = HomeNavigationHolderScreen();
     } else if (settings.name == NotificationScreen.name) {
       widget = NotificationScreen();
+    } else if (settings.name == ViewAllMealScreen.name) {
+      /// meal id = 0 => Breakfast
+      /// 1 => Lunch
+      /// 2 => Scanks
+      /// 3 => Dinner
+      int mealId = settings.arguments as int;
+      widget = ViewAllMealScreen(mealId: mealId);
     }
     return MaterialPageRoute(builder: (context) => widget);
   }

@@ -14,6 +14,10 @@ class AppAssetsPath {
   static final homeCard1 = "assets/images/home_card_1.png";
   static final homeCard2 = "assets/images/home_card_2.png";
   static final homeCard3 = "assets/images/home_card_3.png";
+  static final burger = "assets/images/burger.png";
+  static final cola1 = "assets/images/cola1.png";
+  static final cola2 = "assets/images/cola2.png";
+  static final fry = "assets/images/fry.png";
 
   static final pieChartResult = "assets/images/pie_chart.png";
 
@@ -36,4 +40,8 @@ class AppAssetsPath {
   static final healthScore = "assets/icons/health_score.png";
   static final forgotPass = "assets/icons/forgot_pass.png";
   static final scan = "assets/icons/scan.png";
+  static final breakfast = "assets/icons/breakfast.png";
+  static final lunch = "assets/icons/lunch.png";
+  static final dinner = "assets/icons/dinner.png";
+  static final snacks = "assets/icons/snacks.png";
 }

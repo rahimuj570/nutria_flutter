@@ -67,6 +67,10 @@ class WelcomeScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, ChooseOptionMainHolder.name);
+                      // Navigator.pushNamed(
+                      //   context,
+                      //   HomeNavigationHolderScreen.name,
+                      // );
                     },
                     child: Text(
                       "Get Started Now!!",
