@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:neutria/app/const_colors.dart';
 
 class AnalytricsScreen extends StatelessWidget {
   const AnalytricsScreen({super.key});
@@ -150,84 +151,194 @@ class AnalytricsScreen extends StatelessWidget {
                         Expanded(
                           child: BarChart(
                             BarChartData(
+                              gridData: FlGridData(show: false),
+                              titlesData: FlTitlesData(
+                                leftTitles: AxisTitles(
+                                  sideTitles: SideTitles(
+                                    reservedSize: 40,
+                                    interval: 25,
+                                    showTitles: true,
+                                    getTitlesWidget: (value, meta) =>
+                                        value % 25 == 0 && value != 0
+                                        ? Text('${value.toInt()}')
+                                        : Text(''),
+                                  ),
+                                ),
+                                topTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false),
+                                ),
+                                rightTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false),
+                                ),
+                              ),
+                              borderData: FlBorderData(show: false),
                               maxY: 100,
-                              barGroups: [
-                                BarChartGroupData(
-                                  x: 15,
-                                  groupVertically: true,
-                                  barRods: [
-                                    BarChartRodData(
-                                      width: 24,
-                                      rodStackItems: [
-                                        BarChartRodStackItem(
-                                          40,
-                                          75,
-                                          protienColor,
-                                        ),
-                                        BarChartRodStackItem(75, 100, fatColor),
-                                      ],
-                                      toY: 100,
-                                      color: carbsColor,
-                                    ),
-                                  ],
-                                ),
-                                BarChartGroupData(
-                                  x: 16,
-                                  groupVertically: true,
-                                  barRods: [
-                                    BarChartRodData(
-                                      width: 24,
-                                      rodStackItems: [
-                                        BarChartRodStackItem(
-                                          30,
-                                          60,
-                                          protienColor,
-                                        ),
-                                        BarChartRodStackItem(60, 100, fatColor),
-                                      ],
-                                      toY: 100,
-                                      color: carbsColor,
-                                    ),
-                                  ],
-                                ),
+                              extraLinesData: ExtraLinesData(
+                                horizontalLines: [
+                                  HorizontalLine(
+                                    y: 100,
+                                    dashArray: [5, 5],
+                                    color: Colors.lightGreen,
+                                  ),
+                                ],
+                              ),
 
-                                BarChartGroupData(
-                                  x: 17,
-                                  groupVertically: true,
-                                  barRods: [
-                                    BarChartRodData(
-                                      width: 24,
-                                      rodStackItems: [
-                                        BarChartRodStackItem(
-                                          45,
-                                          80,
-                                          protienColor,
-                                        ),
-                                        BarChartRodStackItem(80, 100, fatColor),
-                                      ],
-                                      toY: 100,
-                                      color: carbsColor,
-                                    ),
-                                  ],
+                              barTouchData: BarTouchData(
+                                enabled: true,
+                                touchTooltipData: BarTouchTooltipData(
+                                  getTooltipColor: (group) => Colors.white,
+                                  tooltipBorder: BorderSide(
+                                    color: ConstColors.lightBoderColor,
+                                  ),
+
+                                  getTooltipItem:
+                                      (group, groupIndex, rod, rodIndex) {
+                                        final stacks = rod.rodStackItems;
+                                        double fat =
+                                            stacks[0].toY - stacks[0].fromY;
+                                        double protein =
+                                            stacks[1].toY - stacks[1].fromY;
+                                        double carbs =
+                                            stacks[2].toY - stacks[2].fromY;
+                                        return BarTooltipItem(
+                                          textAlign: .start,
+                                          textDirection: .ltr,
+                                          '',
+                                          TextStyle(),
+                                          children: [
+                                            TextSpan(
+                                              text: "• ",
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                fontSize: 18,
+                                                height: 1.0,
+                                                fontWeight: .bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: "Fat: ${fat.toInt()}%\n",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: "• ",
+                                              style: TextStyle(
+                                                color: Colors.pink,
+                                                fontSize: 18,
+                                                height: 1.0,
+                                                fontWeight: .bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  "Carbs: ${carbs.toInt()}%\n",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: "• ",
+                                              style: TextStyle(
+                                                color: Colors.orange,
+                                                fontSize: 18,
+                                                height: 1.0,
+                                                fontWeight: .bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  "Protein: ${protein.toInt()}%",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
                                 ),
-                                BarChartGroupData(
+                              ),
+                              barGroups: [
+                                getBarChartGroupData(
+                                  fatColor: fatColor,
+                                  protienColor: protienColor,
+                                  carbsColor: carbsColor,
+                                  toY: 100,
+                                  x: 15,
+                                  fatStart: 60,
+                                  fatEnd: 100,
+                                  protienStart: 45,
+                                  protienEnd: 60,
+                                  carbsStart: 0,
+                                  carbsEnd: 45,
+                                ),
+                                getBarChartGroupData(
+                                  fatColor: fatColor,
+                                  protienColor: protienColor,
+                                  carbsColor: carbsColor,
+                                  toY: 100,
+                                  x: 16,
+                                  fatStart: 55,
+                                  fatEnd: 100,
+                                  protienStart: 30,
+                                  protienEnd: 55,
+                                  carbsStart: 0,
+                                  carbsEnd: 30,
+                                ),
+                                getBarChartGroupData(
+                                  fatColor: fatColor,
+                                  protienColor: protienColor,
+                                  carbsColor: carbsColor,
+                                  toY: 100,
                                   x: 17,
-                                  groupVertically: true,
-                                  barRods: [
-                                    BarChartRodData(
-                                      width: 24,
-                                      rodStackItems: [
-                                        BarChartRodStackItem(
-                                          30,
-                                          60,
-                                          protienColor,
-                                        ),
-                                        BarChartRodStackItem(60, 100, fatColor),
-                                      ],
-                                      toY: 100,
-                                      color: carbsColor,
-                                    ),
-                                  ],
+                                  fatStart: 80,
+                                  fatEnd: 100,
+                                  protienStart: 45,
+                                  protienEnd: 80,
+                                  carbsStart: 0,
+                                  carbsEnd: 45,
+                                ),
+                                getBarChartGroupData(
+                                  fatColor: fatColor,
+                                  protienColor: protienColor,
+                                  carbsColor: carbsColor,
+                                  toY: 100,
+                                  x: 18,
+                                  fatStart: 60,
+                                  fatEnd: 100,
+                                  protienStart: 30,
+                                  protienEnd: 60,
+                                  carbsStart: 0,
+                                  carbsEnd: 30,
+                                ),
+                                getBarChartGroupData(
+                                  fatColor: fatColor,
+                                  protienColor: protienColor,
+                                  carbsColor: carbsColor,
+                                  toY: 100,
+                                  x: 19,
+                                  fatStart: 70,
+                                  fatEnd: 100,
+                                  protienStart: 40,
+                                  protienEnd: 70,
+                                  carbsStart: 0,
+                                  carbsEnd: 40,
+                                ),
+                                getBarChartGroupData(
+                                  fatColor: fatColor,
+                                  protienColor: protienColor,
+                                  carbsColor: carbsColor,
+                                  toY: 89,
+                                  x: 19,
+                                  fatStart: 60,
+                                  fatEnd: 89,
+                                  protienStart: 20,
+                                  protienEnd: 60,
+                                  carbsStart: 0,
+                                  carbsEnd: 20,
                                 ),
                               ],
                             ),
@@ -245,6 +356,37 @@ class AnalytricsScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+BarChartGroupData getBarChartGroupData({
+  required Color fatColor,
+  required protienColor,
+  required carbsColor,
+  required double toY,
+  required int x,
+  required double fatStart,
+  required double fatEnd,
+  required double protienStart,
+  required double protienEnd,
+  required double carbsStart,
+  required double carbsEnd,
+}) {
+  return BarChartGroupData(
+    x: x,
+    groupVertically: true,
+    barRods: [
+      BarChartRodData(
+        width: 24,
+        rodStackItems: [
+          BarChartRodStackItem(fatStart, fatEnd, fatColor),
+          BarChartRodStackItem(protienStart, protienEnd, protienColor),
+          BarChartRodStackItem(carbsStart, carbsEnd, carbsColor),
+        ],
+        toY: toY,
+        color: Colors.transparent,
+      ),
+    ],
+  );
 }
 
 class AnalyticsLineChart extends StatelessWidget {
